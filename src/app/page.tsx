@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import prisma from "../../lib/prisma";
 import { AddPost } from "@/components/AddPost";
 
+const date = new Date();
+
 async function getPosts() {
   /* @ts-ignore */
   const posts = await prisma.post.findMany({
@@ -22,8 +24,7 @@ async function getPosts() {
 export default async function Home() {
   const posts = await getPosts();
 
-  console.log({ cookies });
-  alert(new Date().toISOString());
+  console.log({ cookies, date });
 
   return (
     <main>
