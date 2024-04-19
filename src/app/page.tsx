@@ -23,6 +23,7 @@ export default async function Home() {
   const posts = await getPosts();
 
   console.log({ cookies });
+  alert(new Date().toISOString());
 
   return (
     <main>
