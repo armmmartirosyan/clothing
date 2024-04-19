@@ -1,23 +1,36 @@
-"use client";
+/* @ts-ignore */
+import prisma from "../../lib/prisma";
 
-import axios from "axios";
+async function getPosts() {
+  /* @ts-ignore */
+  const posts = await prisma.post.findMany({
+    where: {
+      published: true,
+    },
+    include: {
+      author: {
+        select: { name: true },
+      },
+    },
+  });
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  return posts;
+}
 
-export default function Home() {
-  const handleClick = () => {
-    axios
-      .get(`${baseUrl}api/init`)
-      .then((response) => {
-        console.log(response, "-----------SUCCESS-----------");
-      })
-      .catch((error) => {
-        console.error(error, "-----------erroR-----------");
-      });
-  };
+export default async function Home() {
+  const posts = await getPosts();
+
+  console.log({ posts }, "-----");
+
   return (
     <main>
-      <button onClick={handleClick}>Click me</button>
+      {posts && posts.length
+        ? posts.map((post: any) => (
+            <div key={post.id}>
+              <h1>{post.title}</h1>
+            </div>
+          ))
+        : null}
     </main>
   );
 }

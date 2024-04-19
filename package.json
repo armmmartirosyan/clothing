@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.12.1",
     "@vercel/postgres": "^0.8.0",
     "axios": "^1.6.8",
     "next": "14.2.1",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
+    "prisma": "^5.12.1",
     "typescript": "^5"
   }
 }
