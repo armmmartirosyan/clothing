@@ -1,5 +1,6 @@
 /* @ts-ignore */
 import prisma from "../../lib/prisma";
+import { AddPost } from "@/components/AddPost";
 
 async function getPosts() {
   /* @ts-ignore */
@@ -20,17 +21,17 @@ async function getPosts() {
 export default async function Home() {
   const posts = await getPosts();
 
-  console.log({ posts }, "-----");
-
   return (
     <main>
-      {posts && posts.length
-        ? posts.map((post: any) => (
-            <div key={post.id}>
-              <h1>{post.title}</h1>
-            </div>
-          ))
-        : null}
+      {posts &&
+        posts.length &&
+        posts.map((post: any) => (
+          <div key={post.id}>
+            <h1>{post.title}</h1>
+          </div>
+        ))}
+
+      <AddPost />
     </main>
   );
 }
