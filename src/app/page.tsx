@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 /* @ts-ignore */
 import prisma from "../../lib/prisma";
 import { AddPost } from "@/components/AddPost";
@@ -20,6 +21,8 @@ async function getPosts() {
 
 export default async function Home() {
   const posts = await getPosts();
+
+  console.log({ cookies });
 
   return (
     <main>
