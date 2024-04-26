@@ -23,8 +23,10 @@ async function getPosts() {
 
 export default async function Home() {
   const posts = await getPosts();
+  const cookieStore = cookies();
+  const theme = cookieStore.get("theme");
 
-  console.log({ cookies, date });
+  console.log({ cookies, theme, date });
 
   return (
     <main>
