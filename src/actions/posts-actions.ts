@@ -1,16 +1,14 @@
 "use server";
 
-/* @ts-ignore */
 import prisma from "../../lib/prisma";
 import { revalidatePath } from "next/cache";
 import { AddPostActionType } from "@/types";
 
 export const addPost: AddPostActionType = async (formData: FormData) => {
-  const content = formData.get("content");
-  const title = formData.get("title");
+  const content = (formData.get("content") || "") as string;
+  const title = (formData.get("title") || "") as string;
 
   try {
-    /* @ts-ignore */
     await prisma.post.create({
       data: {
         title,
@@ -34,7 +32,6 @@ export const addPost: AddPostActionType = async (formData: FormData) => {
 };
 
 export async function getPosts() {
-  /* @ts-ignore */
   const posts = await prisma.post.findMany({
     where: {
       published: true,
