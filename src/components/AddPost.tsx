@@ -1,5 +1,3 @@
-"use client";
-
 import { addPost } from "@/actions/posts-actions";
 
 export function AddPost() {
