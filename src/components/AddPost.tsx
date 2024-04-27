@@ -1,14 +1,42 @@
+"use client";
+
+import { useRef } from "react";
 import { addPost } from "@/actions/posts-actions";
+import { Button } from "./index";
+import styles from "@/styles/Home.module.css";
 
 export function AddPost() {
-  return (
-    <div>
-      <form action={addPost}>
-        <input required type="text" name="title" placeholder="Title" />
-        <input required type="text" name="content" placeholder="Content" />
+  const ref = useRef<HTMLFormElement>(null);
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+  const handleFormAction = async (formData: FormData) => {
+    const { error } = await addPost(formData);
+
+    if (error) {
+      alert("Something went wrong");
+      return;
+    }
+
+    ref.current?.reset();
+  };
+
+  return (
+    <form action={handleFormAction} ref={ref}>
+      <input
+        required
+        type="text"
+        name="title"
+        placeholder="Title"
+        className={styles.input}
+      />
+      <input
+        required
+        type="text"
+        name="content"
+        placeholder="Content"
+        className={styles.input}
+      />
+
+      <Button />
+    </form>
   );
 }
