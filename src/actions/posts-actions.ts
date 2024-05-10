@@ -22,7 +22,7 @@ export const addPost: AddPostActionType = async (formData: FormData) => {
       },
     });
 
-    revalidatePath("/");
+    revalidatePath("/test");
     return { error: null };
   } catch (error: any) {
     return {

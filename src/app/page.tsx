@@ -1,14 +1,23 @@
-import { Suspense } from "react";
-import { AddPost, PostsList } from "@/components";
-import styles from "@/styles/Home.module.css";
+import {
+  Banner,
+  Categories,
+  Features,
+  Footer,
+  Header,
+  RecentProducts,
+  TopHeader,
+} from "@/components";
 
-export default async function Home() {
+export default function Home() {
   return (
-    <main className={styles.main}>
-      <AddPost />
-      <Suspense fallback={"Loading..."}>
-        <PostsList />
-      </Suspense>
-    </main>
+    <>
+      <TopHeader />
+      <Header />
+      <Banner />
+      <Features />
+      <Categories />
+      <RecentProducts />
+      <Footer />
+    </>
   );
 }
