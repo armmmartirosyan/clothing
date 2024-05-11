@@ -1,17 +1,14 @@
 import { Nav } from "@/components/dashboard-components";
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <body>
-        <Nav />
-
-        {children}
-      </body>
-    </html>
+    <>
+      <Nav />
+      {children}
+    </>
   );
 }

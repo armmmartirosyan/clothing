@@ -1,11 +1,12 @@
 import { Suspense } from "react";
 import { cookies } from "next/headers";
 import { CategoriesTable } from "@/components/dashboard-components/categories-table";
+import { getCategories } from "@/actions/categories-actions";
 import { authUtils } from "@/utils/auth-utils";
 import { IPageSearchParams } from "@/types";
 import styles from "@/styles/dashboard.module.css";
 
-export default function Categories({
+export default async function Categories({
   searchParams,
 }: {
   searchParams: IPageSearchParams;
@@ -14,10 +15,16 @@ export default function Categories({
   const page = +searchParams.page || 1;
   authUtils.requireAuth(cookieStore);
 
+  const { categories, pageCount } = await getCategories(page);
+
   return (
     <main className={styles.main}>
       <Suspense fallback="Loading...">
-        <CategoriesTable page={page} />
+        <CategoriesTable
+          page={page}
+          categories={categories}
+          pageCount={pageCount}
+        />
       </Suspense>
     </main>
   );

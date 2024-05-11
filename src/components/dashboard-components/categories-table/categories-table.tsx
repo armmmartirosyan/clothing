@@ -6,13 +6,19 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import { CATEGORIES_TABLE_COLUMNS } from "@/constants/shared-constants";
-import { getCategories } from "@/actions/categories-actions";
 import { Pagination } from "./components";
 import { Row } from "./components/row";
+import { ICategory } from "@/types";
 
-export async function CategoriesTable({ page }: { page: number }) {
-  const { categories, pageCount } = await getCategories(page);
-
+export function CategoriesTable({
+  page,
+  pageCount,
+  categories,
+}: {
+  page: number;
+  pageCount: number;
+  categories: ICategory[];
+}) {
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 500 }}>
