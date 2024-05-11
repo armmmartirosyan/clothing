@@ -7,7 +7,7 @@ class AuthUtils {
     const authCookie = cookieStore.get(AUTH_COOKIES.name);
 
     if (authCookie?.value !== AUTH_COOKIES.value) {
-      redirect("sign-in");
+      redirect("/sign-in");
     }
   }
 
@@ -17,13 +17,6 @@ class AuthUtils {
     if (authCookie?.value === AUTH_COOKIES.value) {
       redirect("/dashboard/products");
     }
-  }
-
-  public async signOut(cookieStore: ReadonlyRequestCookies) {
-    "use server";
-    cookieStore.delete(AUTH_COOKIES.name);
-
-    redirect("/sign-in");
   }
 }
 
