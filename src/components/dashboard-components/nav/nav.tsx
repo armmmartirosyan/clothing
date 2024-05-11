@@ -1,6 +1,5 @@
-import LogoutIcon from "@mui/icons-material/Logout";
 import { DASHBOARD_PAGES } from "@/constants/shared-constants";
-import { NavItem } from "./components";
+import { NavItem, SignOutIcon } from "./components";
 import styles from "./nav.module.css";
 
 export function Nav() {
@@ -10,7 +9,7 @@ export function Nav() {
         <NavItem navItem={navItem} key={navItem.path} />
       ))}
 
-      <LogoutIcon className={styles.sign_out} />
+      <SignOutIcon />
     </nav>
   );
 }

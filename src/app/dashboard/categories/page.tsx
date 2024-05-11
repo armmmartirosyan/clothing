@@ -5,7 +5,7 @@ import { authUtils } from "@/utils/auth-utils";
 import { IPageSearchParams } from "@/types";
 import styles from "@/styles/dashboard.module.css";
 
-export default function Dashboard({
+export default function Categories({
   searchParams,
 }: {
   searchParams: IPageSearchParams;
