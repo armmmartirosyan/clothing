@@ -1,3 +1,5 @@
+"use client";
+
 import TableContainer from "@mui/material/TableContainer";
 import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
