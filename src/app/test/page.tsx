@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { AddPost, PostsList } from "@/components";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Test.module.css";
 import Link from "next/link";
 
 export default async function Home() {

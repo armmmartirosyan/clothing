@@ -1,3 +1,4 @@
+import { stringUtils } from "@/utils/string-utils";
 import Image from "next/image";
 
 export function TopHeader() {
@@ -11,7 +12,7 @@ export function TopHeader() {
                 <Image
                   width={500}
                   height={500}
-                  src="http://localhost:3000/img/logo.png"
+                  src={stringUtils.normalizeImageSrc("images/logo.png")}
                   alt="Logo"
                 />
               </a>

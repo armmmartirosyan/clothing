@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Test.module.css";
 
 export function Button() {
   const { pending } = useFormStatus();

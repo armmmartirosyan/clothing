@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Carousel } from "nuka-carousel";
+import productImage from "@/images/product-2.png";
 
 export function RecentProducts() {
   return (
@@ -27,7 +28,7 @@ export function RecentProducts() {
                   <Image
                     width={500}
                     height={500}
-                    src="http://localhost:3000/img/product-2.png"
+                    src={productImage}
                     alt="Product Image"
                   />
                 </a>
@@ -67,7 +68,7 @@ export function RecentProducts() {
                   <Image
                     width={500}
                     height={500}
-                    src="http://localhost:3000/img/product-4.png"
+                    src={productImage}
                     alt="Product Image"
                   />
                 </a>
@@ -107,7 +108,7 @@ export function RecentProducts() {
                   <Image
                     width={500}
                     height={500}
-                    src="http://localhost:3000/img/product-6.png"
+                    src={productImage}
                     alt="Product Image"
                   />
                 </a>
@@ -147,7 +148,7 @@ export function RecentProducts() {
                   <Image
                     width={500}
                     height={500}
-                    src="http://localhost:3000/img/product-8.png"
+                    src={productImage}
                     alt="Product Image"
                   />
                 </a>
@@ -187,7 +188,7 @@ export function RecentProducts() {
                   <Image
                     width={500}
                     height={500}
-                    src="http://localhost:3000/img/product-9.png"
+                    src={productImage}
                     alt="Product Image"
                   />
                 </a>

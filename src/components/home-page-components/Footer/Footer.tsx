@@ -1,9 +1,12 @@
 import Image from "next/image";
+import paymentMethod from "@/images/payment-method.png";
+import godaddy from "@/images/godaddy.svg";
+import norton from "@/images/norton.svg";
+import ssl from "@/images/ssl.svg";
 
 export function Footer() {
   return (
     <>
-      {" "}
       <div className="footer">
         <div className="container-fluid">
           <div className="row">
@@ -115,7 +118,7 @@ export function Footer() {
                 <Image
                   width={500}
                   height={500}
-                  src="http://localhost:3000/img/payment-method.png"
+                  src={paymentMethod}
                   alt="Payment Method"
                 />
               </div>
@@ -126,19 +129,19 @@ export function Footer() {
                 <Image
                   width={500}
                   height={500}
-                  src="http://localhost:3000/img/godaddy.svg"
+                  src={godaddy}
                   alt="Payment Security"
                 />
                 <Image
                   width={500}
                   height={500}
-                  src="http://localhost:3000/img/norton.svg"
+                  src={norton}
                   alt="Payment Security"
                 />
                 <Image
                   width={500}
                   height={500}
-                  src="http://localhost:3000/img/ssl.svg"
+                  src={ssl}
                   alt="Payment Security"
                 />
               </div>

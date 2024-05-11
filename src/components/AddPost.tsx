@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { addPost } from "@/actions/posts-actions";
 import { Button } from "./index";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Test.module.css";
 
 export function AddPost() {
   const ref = useRef<HTMLFormElement>(null);

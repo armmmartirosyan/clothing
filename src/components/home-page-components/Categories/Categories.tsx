@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { stringUtils } from "@/utils/string-utils";
 
 export function Categories() {
   return (
@@ -10,7 +11,7 @@ export function Categories() {
               <Image
                 width={500}
                 height={500}
-                src="http://localhost:3000/img/category-1.jpg"
+                src={stringUtils.normalizeImageSrc("images/category-3.jpg")}
                 alt="Category"
               />
               <a className="category-name" href="">
@@ -23,7 +24,7 @@ export function Categories() {
               <Image
                 width={500}
                 height={500}
-                src="http://localhost:3000/img/category-3.jpg"
+                src={stringUtils.normalizeImageSrc("images/category-3.jpg")}
                 alt="Category"
               />
               <a className="category-name" href="">
@@ -34,7 +35,7 @@ export function Categories() {
               <Image
                 width={500}
                 height={500}
-                src="http://localhost:3000/img/category-4.jpg"
+                src={stringUtils.normalizeImageSrc("images/category-3.jpg")}
                 alt="Category"
               />
               <a className="category-name" href="">
@@ -47,7 +48,7 @@ export function Categories() {
               <Image
                 width={500}
                 height={500}
-                src="http://localhost:3000/img/category-2.jpg"
+                src={stringUtils.normalizeImageSrc("images/category-3.jpg")}
                 alt="Category"
               />
               <a className="category-name" href="">

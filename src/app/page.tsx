@@ -6,7 +6,7 @@ import {
   Header,
   RecentProducts,
   TopHeader,
-} from "@/components";
+} from "@/components/home-page-components";
 
 export default function Home() {
   return (

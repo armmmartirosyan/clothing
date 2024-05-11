@@ -1,5 +1,5 @@
 import { getPosts } from "@/actions/posts-actions";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Test.module.css";
 
 export async function PostsList() {
   const posts = await getPosts();

@@ -2,6 +2,7 @@
 
 import { Carousel } from "nuka-carousel";
 import Image from "next/image";
+import { stringUtils } from "@/utils/string-utils";
 
 export function Banner() {
   return (
@@ -11,48 +12,48 @@ export function Banner() {
           <Image
             width={500}
             height={500}
-            src="http://localhost:3000/img/slider-1.jpg"
             alt="Slider Image"
+            src={stringUtils.normalizeImageSrc("images/slider-1.jpg")}
           />
         </div>
         <div className="main-slider-item">
           <Image
             width={500}
             height={500}
-            src="http://localhost:3000/img/slider-2.jpg"
             alt="Slider Image"
+            src={stringUtils.normalizeImageSrc("images/slider-1.jpg")}
           />
         </div>
         <div className="main-slider-item">
           <Image
             width={500}
             height={500}
-            src="http://localhost:3000/img/slider-3.jpg"
             alt="Slider Image"
+            src={stringUtils.normalizeImageSrc("images/slider-1.jpg")}
           />
         </div>
         <div className="main-slider-item">
           <Image
             width={500}
             height={500}
-            src="http://localhost:3000/img/slider-1.jpg"
             alt="Slider Image"
+            src={stringUtils.normalizeImageSrc("images/slider-1.jpg")}
           />
         </div>
         <div className="main-slider-item">
           <Image
             width={500}
             height={500}
-            src="http://localhost:3000/img/slider-2.jpg"
             alt="Slider Image"
+            src={stringUtils.normalizeImageSrc("images/slider-1.jpg")}
           />
         </div>
         <div className="main-slider-item">
           <Image
             width={500}
             height={500}
-            src="http://localhost:3000/img/slider-3.jpg"
             alt="Slider Image"
+            src={stringUtils.normalizeImageSrc("images/slider-1.jpg")}
           />
         </div>
       </Carousel>
