@@ -8,8 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import { CATEGORIES_TABLE_COLUMNS } from "@/constants/shared-constants";
-import { Pagination } from "./components";
-import { Row } from "./components/row";
+import { Pagination, Row } from "./components";
 import { ICategory } from "@/types";
 
 export function CategoriesTable({
@@ -29,7 +28,7 @@ export function CategoriesTable({
             <TableRow>
               {CATEGORIES_TABLE_COLUMNS.map((column) => (
                 <TableCell
-                  key={column.label}
+                  key={column.id}
                   style={{ minWidth: column.minWidth }}
                 >
                   {column.label}

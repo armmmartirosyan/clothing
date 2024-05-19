@@ -1,7 +1,6 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import Image from "next/image";
-import { stringUtils } from "@/utils/string-utils";
+import { DeleteCell, EditCell } from "./index";
 import { ICategory } from "@/types";
 
 export function Row({ category }: { category: ICategory }) {
@@ -9,8 +8,8 @@ export function Row({ category }: { category: ICategory }) {
     <TableRow hover tabIndex={-1} role="checkbox" key={category.id}>
       <TableCell>{category.id}</TableCell>
       <TableCell>
-        <Image
-          src={stringUtils.normalizeImageSrc(category.imageUrl)}
+        <img
+          src={category.imageUrl}
           style={{ objectFit: "contain" }}
           alt={category.name}
           width={100}
@@ -18,6 +17,8 @@ export function Row({ category }: { category: ICategory }) {
         />
       </TableCell>
       <TableCell>{category.name}</TableCell>
+      <DeleteCell categoryId={category.id} />
+      <EditCell category={category} />
     </TableRow>
   );
 }

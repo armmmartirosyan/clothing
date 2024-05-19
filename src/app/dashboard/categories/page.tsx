@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import { cookies } from "next/headers";
-import { CategoriesTable } from "@/components/dashboard-components/categories-table";
+import {
+  CategoriesTable,
+  AddCategory,
+} from "@/components/dashboard-components";
 import { getCategories } from "@/actions/categories-actions";
 import { authUtils } from "@/utils/auth-utils";
 import { IPageSearchParams } from "@/types";
@@ -19,6 +22,7 @@ export default async function Categories({
 
   return (
     <main className={styles.main}>
+      <AddCategory />
       <Suspense fallback="Loading...">
         <CategoriesTable
           page={page}

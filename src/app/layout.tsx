@@ -1,6 +1,7 @@
 import { Open_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+import { EdgeStoreProvider } from "../../lib/edgestore";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -29,7 +30,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={openSans.className}>{children}</body>
+      <body className={openSans.className}>
+        <EdgeStoreProvider>{children}</EdgeStoreProvider>
+      </body>
     </html>
   );
 }

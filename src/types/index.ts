@@ -6,6 +6,7 @@ export interface INavItem {
 }
 
 export interface ICategoryColumn {
+  id: number;
   label: string;
   minWidth?: number;
 }

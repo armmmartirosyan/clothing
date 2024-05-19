@@ -1,0 +1,49 @@
+.wrapper {
+  padding: 20px;
+  display: flex;
+  justify-content: right;
+}
+
+.dialog {
+  max-width: 100%;
+  width: 500px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 40px;
+  text-align: center;
+  border: 0;
+}
+
+.dialog_container {
+  position: relative;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.input {
+  width: 100%;
+}
+
+.close {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+}
