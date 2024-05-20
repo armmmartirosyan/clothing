@@ -2,9 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
+import { backendClient } from "../../lib/edgestore-server";
 import { IGetCategoriesActionReturn } from "@/types";
 import prisma from "../../lib/prisma";
-import { backendClient } from "../../lib/edgestore-server";
 
 export async function getCategories(
   page: number
@@ -22,14 +22,20 @@ export async function getCategories(
   return { categories, pageCount };
 }
 
-export const addCategory = async ({
-  name,
-  imageUrl,
-}: {
-  name: string;
-  imageUrl: string;
-}) => {
+export const addCategory = async (formData: FormData) => {
+  const name = (formData.get("name") || "") as string;
+  const file = formData.get("image")! as File;
+
   try {
+    const blob = new Blob([file], { type: file.type });
+
+    const { url: imageUrl } = await backendClient.myPublicImages.upload({
+      content: {
+        blob,
+        extension: file.type,
+      },
+    });
+
     await prisma.category.create({
       data: {
         imageUrl,
@@ -87,14 +93,34 @@ export const deleteCategory = async (categoryId: string) => {
 
 export const editCategory = async ({
   id,
-  name,
-  imageUrl,
+  formData,
 }: {
   id: string;
-  name: string;
-  imageUrl: string;
+  formData: FormData;
 }) => {
+  const name = (formData.get("name") || "") as string;
+  const file = formData.get("image") as File;
+
   try {
+    let res = {} as {
+      url: string;
+      size: number;
+      metadata: Record<string, never>;
+      path: Record<string, never>;
+      pathOrder: string[];
+    };
+
+    if (file.name && file.size) {
+      const blob = new Blob([file], { type: file.type });
+
+      res = await backendClient.myPublicImages.upload({
+        content: {
+          blob,
+          extension: file.type,
+        },
+      });
+    }
+
     const category = await prisma.category.findUnique({
       where: { id },
     });
@@ -105,9 +131,7 @@ export const editCategory = async ({
       };
     }
 
-    console.log({ id, name, imageUrl, category });
-
-    if (imageUrl) {
+    if (res.url) {
       console.log("in iffff");
 
       const { success } = await backendClient.myPublicImages.deleteFile({
@@ -116,7 +140,7 @@ export const editCategory = async ({
 
       if (!success) {
         await backendClient.myPublicImages.deleteFile({
-          url: imageUrl,
+          url: res.url,
         });
 
         return {
@@ -130,7 +154,7 @@ export const editCategory = async ({
         id,
       },
       data: {
-        imageUrl: imageUrl || category.imageUrl,
+        imageUrl: res.url || category.imageUrl,
         name,
       },
     });

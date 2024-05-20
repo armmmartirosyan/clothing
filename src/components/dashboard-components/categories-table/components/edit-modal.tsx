@@ -2,11 +2,10 @@
 
 import CloseIcon from "@mui/icons-material/Close";
 import { MouseEventHandler, RefObject, useRef } from "react";
-import { useEdgeStore } from "../../../../../lib/edgestore";
 import { editCategory } from "@/actions/categories-actions";
 import { EditButton } from "./index";
-import styles from "./generics.module.css";
 import { ICategory } from "@/types";
+import styles from "./generics.module.css";
 
 export function EditModal({
   dialogRef,
@@ -16,52 +15,32 @@ export function EditModal({
   category: ICategory;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
-  const { edgestore } = useEdgeStore();
 
-  const handleEdit = async (formData: FormData) => {
-    const name = (formData.get("name") || "") as string;
-    const file = formData.get("image") as File;
-
-    try {
-      let res = {} as {
-        url: string;
-        thumbnailUrl: string | null;
-        size: number;
-        uploadedAt: Date;
-        metadata: Record<string, never>;
-        path: Record<string, never>;
-        pathOrder: string[];
-      };
-
-      if (file.name && file.size) {
-        res = await edgestore.myPublicImages.upload({ file });
-      }
-
-      const { error } = await editCategory({
-        id: category.id,
-        name,
-        imageUrl: res.url || "",
-      });
-
-      console.log({ error });
-
-      if (!error) {
-        dialogRef.current && dialogRef.current.close();
-        formRef.current && formRef.current.reset();
-      }
-    } catch (e) {}
-  };
-
-  const handleCloseDialog: MouseEventHandler<SVGSVGElement> = (e) => {
-    e.stopPropagation();
+  const closeDialog = () => {
     dialogRef.current && dialogRef.current.close();
     formRef.current && formRef.current.reset();
+  };
+
+  const handleCloseIconClick: MouseEventHandler<SVGSVGElement> = (e) => {
+    e.stopPropagation();
+    closeDialog();
+  };
+
+  const handleEdit = async (formData: FormData) => {
+    const { error } = await editCategory({
+      id: category.id,
+      formData,
+    });
+
+    if (!error) {
+      closeDialog();
+    }
   };
 
   return (
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialog_container}>
-        <CloseIcon className={styles.close} onClick={handleCloseDialog} />
+        <CloseIcon className={styles.close} onClick={handleCloseIconClick} />
         <h2 className={styles.title}>Edit category</h2>
         <form action={handleEdit} className={styles.form} ref={formRef}>
           <input
