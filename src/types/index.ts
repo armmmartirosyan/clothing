@@ -1,5 +1,3 @@
-export type AddPostActionType = (formData: FormData) => Promise<{ error: any }>;
-
 export interface INavItem {
   name: string;
   path: string;

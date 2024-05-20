@@ -1,7 +1,7 @@
 import { Open_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-import { EdgeStoreProvider } from "../../lib/edgestore";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const openSans = Open_Sans({
   subsets: ["latin"],

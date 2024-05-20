@@ -2,9 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
-import { backendClient } from "../../lib/edgestore-server";
+import { backendClient } from "@/lib/edgestore-server";
 import { IGetCategoriesActionReturn } from "@/types";
-import prisma from "../../lib/prisma";
+import prisma from "@//lib/prisma";
 
 export async function getCategories(
   page: number

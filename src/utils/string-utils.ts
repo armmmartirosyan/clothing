@@ -1,5 +1,3 @@
-import path from "path";
-
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 class StringUtils {
