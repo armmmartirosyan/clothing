@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
 import { IGetCategoriesActionReturn } from "@/types";
-import prisma from "@//lib/prisma";
+import prisma from "@/lib/prisma";
 
 export async function getCategories(
   page: number
@@ -132,8 +132,6 @@ export const editCategory = async ({
     }
 
     if (res.url) {
-      console.log("in iffff");
-
       const { success } = await backendClient.myPublicImages.deleteFile({
         url: category.imageUrl,
       });
