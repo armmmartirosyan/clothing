@@ -1,5 +1,5 @@
 import { useGetAllCategories } from "@/hooks";
-import styles from "../add-product.module.css";
+import styles from "./index.module.css";
 
 export function CategorySelect() {
   const categories = useGetAllCategories();

@@ -2,8 +2,8 @@
 
 import Button from "@mui/material/Button";
 import { useRef } from "react";
-import { AddModal } from "./components";
-import styles from "./add-product.module.css";
+import { AddModal } from "./add-modal";
+import styles from "./index.module.css";
 
 export function AddProduct() {
   const dialogRef = useRef<HTMLDialogElement>(null);

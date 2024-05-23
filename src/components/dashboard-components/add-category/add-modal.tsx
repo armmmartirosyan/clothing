@@ -3,8 +3,8 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
 import { addCategory } from "@/actions/categories-actions";
-import { AddButton } from "./index";
-import styles from "../add-category.module.css";
+import { AddButton } from "@/components/shared-components";
+import styles from "./index.module.css";
 
 export function AddModal({
   dialogRef,

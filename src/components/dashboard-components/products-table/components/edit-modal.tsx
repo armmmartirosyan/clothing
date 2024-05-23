@@ -2,7 +2,8 @@
 
 import CloseIcon from "@mui/icons-material/Close";
 import { MouseEventHandler, RefObject, useRef } from "react";
-import { CategorySelect, EditButton } from "./index";
+import { CategorySelect } from "./index";
+import { EditButton } from "@/components/shared-components";
 import { IProduct } from "@/types";
 import styles from "./generics.module.css";
 import { editProduct } from "@/actions/products-actions";

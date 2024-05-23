@@ -3,8 +3,9 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
 import { addProduct } from "@/actions/products-actions";
-import { AddButton, CategorySelect } from "./index";
-import styles from "../add-product.module.css";
+import { CategorySelect } from "./category-select";
+import { AddButton } from "@/components/shared-components";
+import styles from "./index.module.css";
 
 export function AddModal({
   dialogRef,

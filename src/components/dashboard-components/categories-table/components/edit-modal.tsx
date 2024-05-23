@@ -3,7 +3,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { MouseEventHandler, RefObject, useRef } from "react";
 import { editCategory } from "@/actions/categories-actions";
-import { EditButton } from "./index";
+import { EditButton } from "@/components/shared-components";
 import { ICategory } from "@/types";
 import styles from "./generics.module.css";
 

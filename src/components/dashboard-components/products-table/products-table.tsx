@@ -8,7 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import { PRODUCTS_TABLE_COLUMNS } from "@/constants/shared-constants";
-import { Pagination, Row } from "./components";
+import { Row } from "./components";
+import { Pagination } from "@/components/shared-components";
 import { IProduct } from "@/types";
 
 export function ProductsTable({

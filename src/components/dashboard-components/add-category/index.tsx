@@ -2,8 +2,8 @@
 
 import Button from "@mui/material/Button";
 import { useRef } from "react";
-import { AddModal } from "./components";
-import styles from "./add-category.module.css";
+import { AddModal } from "./add-modal";
+import styles from "./index.module.css";
 
 export function AddCategory() {
   const dialogRef = useRef<HTMLDialogElement>(null);
