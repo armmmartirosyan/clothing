@@ -31,47 +31,35 @@ export const addProduct = async (formData: FormData) => {
   const categoryId = (formData.get("categoryId") || "") as string;
   const file = formData.get("image")! as File;
 
-  console.log({
-    name,
-    description,
-    price,
-    oldPrice,
-    isNew,
-    categoryId,
-    file,
-  });
+  try {
+    const blob = new Blob([file], { type: file.type });
 
-  return { error: "" };
+    const { url: imageUrl } = await backendClient.myPublicImages.upload({
+      content: {
+        blob,
+        extension: file.type,
+      },
+    });
 
-  // try {
-  //   const blob = new Blob([file], { type: file.type });
+    await prisma.product.create({
+      data: {
+        imageUrl,
+        name,
+        description,
+        price,
+        oldPrice,
+        isNew,
+        categoryId,
+      },
+    });
 
-  //   const { url: imageUrl } = await backendClient.myPublicImages.upload({
-  //     content: {
-  //       blob,
-  //       extension: file.type,
-  //     },
-  //   });
-
-  //   await prisma.product.create({
-  //     data: {
-  //       imageUrl,
-  //       name,
-  //       description,
-  //       price,
-  //       oldPrice,
-  //       isNew,
-  //       categoryId,
-  //     },
-  //   });
-
-  //   revalidatePath("/dashboard/products");
-  //   return { error: null };
-  // } catch (error: any) {
-  //   return {
-  //     error,
-  //   };
-  // }
+    revalidatePath("/dashboard/products");
+    return { error: null };
+  } catch (error: any) {
+    return {
+      error,
+    };
+  }
 };
 
 export const deleteProduct = async (productId: string) => {
@@ -124,7 +112,7 @@ export const editProduct = async ({
   const description = (formData.get("description") || "") as string;
   const price = Number(formData.get("price"));
   const oldPrice = Number(formData.get("oldPrice"));
-  const isNew = !!Number(formData.get("name"));
+  const isNew = !!formData.get("isNew");
   const categoryId = (formData.get("categoryId") || "") as string;
   const file = formData.get("image") as File;
 

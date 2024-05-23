@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
-import { IGetCategoriesActionReturn } from "@/types";
+import { ICategory, IGetCategoriesActionReturn } from "@/types";
 import prisma from "@/lib/prisma";
 
 export async function getCategories(
@@ -20,6 +20,10 @@ export async function getCategories(
   const pageCount = Math.ceil(totalCount / ROWS_PER_PAGE);
 
   return { categories, pageCount };
+}
+
+export async function getAllCategories(): Promise<ICategory[]> {
+  return await prisma.category.findMany();
 }
 
 export const addCategory = async (formData: FormData) => {

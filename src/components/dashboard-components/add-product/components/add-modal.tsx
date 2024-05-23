@@ -3,7 +3,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
 import { addProduct } from "@/actions/products-actions";
-import { AddButton } from "./index";
+import { AddButton, CategorySelect } from "./index";
 import styles from "../add-product.module.css";
 
 export function AddModal({
@@ -30,7 +30,7 @@ export function AddModal({
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialog_container}>
         <CloseIcon className={styles.close} onClick={closeDialog} />
-        <h2 className={styles.title}>Add category</h2>
+        <h2 className={styles.title}>Add product</h2>
         <form action={handleAdd} className={styles.form} ref={formRef}>
           <input
             type="text"
@@ -60,13 +60,9 @@ export function AddModal({
             name="oldPrice"
             required
           />
-          <input
-            type="text"
-            className={styles.input}
-            placeholder="Category ID"
-            name="categoryId"
-            required
-          />
+
+          <CategorySelect />
+
           <input
             type="file"
             className={styles.input}
