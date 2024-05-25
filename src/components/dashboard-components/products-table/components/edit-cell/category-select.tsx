@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useGetAllCategories } from "@/hooks";
-import styles from "./generics.module.css";
+import styles from "./index.module.css";
 
 export function CategorySelect({ defaultValue }: { defaultValue: string }) {
   const [selectedCategory, setSelectedCategory] =

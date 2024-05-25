@@ -1,3 +1,2 @@
-export { AddButton } from "./add-button";
+export { Button } from "./button";
 export { Pagination } from "./pagination";
-export { EditButton } from "./edit-button";

@@ -1,6 +1,6 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { DeleteCell, EditCell } from "./index";
+import { DeleteCell, EditCell } from "./components";
 import { ICategory } from "@/types";
 
 export function Row({ category }: { category: ICategory }) {

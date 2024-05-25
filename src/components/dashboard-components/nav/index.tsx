@@ -1,6 +1,7 @@
 import { DASHBOARD_PAGES } from "@/constants/shared-constants";
-import { NavItem, SignOutIcon } from "./components";
-import styles from "./nav.module.css";
+import { SignOutIcon } from "./sign-out-icon";
+import { NavItem } from "./nav-item";
+import styles from "./index.module.css";
 
 export function Nav() {
   return (

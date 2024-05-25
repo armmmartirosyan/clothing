@@ -3,10 +3,10 @@
 import EditIcon from "@mui/icons-material/Edit";
 import TableCell from "@mui/material/TableCell";
 import { useRef } from "react";
-import { EditModal } from "./index";
-import { ICategory } from "@/types";
+import { EditModal } from "./edit-modal";
+import { IProduct } from "@/types";
 
-export function EditCell({ category }: { category: ICategory }) {
+export function EditCell({ product }: { product: IProduct }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const hadleOpen = () => {
@@ -16,7 +16,7 @@ export function EditCell({ category }: { category: ICategory }) {
   return (
     <TableCell onClick={hadleOpen}>
       <EditIcon sx={{ cursor: "pointer" }} />
-      <EditModal dialogRef={dialogRef} category={category} />
+      <EditModal dialogRef={dialogRef} product={product} />
     </TableCell>
   );
 }

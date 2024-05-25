@@ -2,7 +2,7 @@
 
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/navigation";
-import styles from "../nav.module.css";
+import styles from "./index.module.css";
 
 export function SignOutIcon() {
   const router = useRouter();

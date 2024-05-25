@@ -3,7 +3,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
 import { addCategory } from "@/actions/categories-actions";
-import { AddButton } from "@/components/shared-components";
+import { Button } from "@/components/shared-components";
 import styles from "./index.module.css";
 
 export function AddModal({
@@ -46,7 +46,7 @@ export function AddModal({
             required
             accept="image/png, image/jpeg"
           />
-          <AddButton />
+          <Button>Add</Button>
         </form>
       </div>
     </dialog>

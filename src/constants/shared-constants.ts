@@ -43,3 +43,10 @@ export const PRODUCTS_TABLE_COLUMNS: readonly IColumn[] = [
   { id: 9, label: "", minWidth: 100 },
   { id: 10, label: "", minWidth: 100 },
 ];
+
+export const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];

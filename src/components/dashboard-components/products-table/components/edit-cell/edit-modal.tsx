@@ -1,12 +1,12 @@
 "use client";
 
-import CloseIcon from "@mui/icons-material/Close";
 import { MouseEventHandler, RefObject, useRef } from "react";
-import { CategorySelect } from "./index";
-import { EditButton } from "@/components/shared-components";
-import { IProduct } from "@/types";
-import styles from "./generics.module.css";
+import CloseIcon from "@mui/icons-material/Close";
+import { Button } from "@/components/shared-components";
 import { editProduct } from "@/actions/products-actions";
+import { CategorySelect } from "./category-select";
+import { IProduct } from "@/types";
+import styles from "./index.module.css";
 
 export function EditModal({
   dialogRef,
@@ -97,7 +97,7 @@ export function EditModal({
             />
             Is new?
           </label>
-          <EditButton />
+          <Button>Edit</Button>
         </form>
       </div>
     </dialog>

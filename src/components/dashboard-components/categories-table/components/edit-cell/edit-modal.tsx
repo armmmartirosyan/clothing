@@ -3,9 +3,9 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { MouseEventHandler, RefObject, useRef } from "react";
 import { editCategory } from "@/actions/categories-actions";
-import { EditButton } from "@/components/shared-components";
+import { Button } from "@/components/shared-components";
 import { ICategory } from "@/types";
-import styles from "./generics.module.css";
+import styles from "./index.module.css";
 
 export function EditModal({
   dialogRef,
@@ -57,7 +57,7 @@ export function EditModal({
             name="image"
             accept="image/png, image/jpeg"
           />
-          <EditButton />
+          <Button>Edit</Button>
         </form>
       </div>
     </dialog>

@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
 import { addProduct } from "@/actions/products-actions";
 import { CategorySelect } from "./category-select";
-import { AddButton } from "@/components/shared-components";
+import { Button } from "@/components/shared-components";
 import styles from "./index.module.css";
 
 export function AddModal({
@@ -82,7 +82,7 @@ export function AddModal({
             />
             Is new?
           </label>
-          <AddButton />
+          <Button>Add</Button>
         </form>
       </div>
     </dialog>

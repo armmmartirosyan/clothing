@@ -8,9 +8,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import { CATEGORIES_TABLE_COLUMNS } from "@/constants/shared-constants";
-import { Row } from "./components";
 import { Pagination } from "@/components/shared-components";
 import { ICategory } from "@/types";
+import { Row } from "./row";
 
 export function CategoriesTable({
   page,

@@ -5,6 +5,7 @@ import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
 import { IGetCategoriesActionReturn } from "@/types";
 import prisma from "@/lib/prisma";
+import { addCategorySchema } from "@/utils/validators";
 
 export async function getCategories(
   page: number
@@ -24,15 +25,26 @@ export async function getCategories(
 
 export const addCategory = async (formData: FormData) => {
   const name = (formData.get("name") || "") as string;
-  const file = formData.get("image")! as File;
+  const image = formData.get("image")! as File;
+
+  const validatedCategory = addCategorySchema.safeParse({
+    name,
+    image,
+  });
+
+  if (!validatedCategory.success) {
+    return {
+      error: validatedCategory.error.message,
+    };
+  }
 
   try {
-    const blob = new Blob([file], { type: file.type });
+    const blob = new Blob([image], { type: image.type });
 
     const { url: imageUrl } = await backendClient.myPublicImages.upload({
       content: {
         blob,
-        extension: file.type,
+        extension: image.type,
       },
     });
 
