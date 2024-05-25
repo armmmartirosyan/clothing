@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { CATEGORY_NOT_FOUND, DELETE_IMAGE_FAIL } from "@/constants/messages";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
 import prisma from "@/lib/prisma";
@@ -95,7 +96,7 @@ export async function deleteCategory(
 
     if (!category) {
       return {
-        error: "Category not found",
+        error: CATEGORY_NOT_FOUND,
       };
     }
 
@@ -105,7 +106,7 @@ export async function deleteCategory(
 
     if (!success) {
       return {
-        error: "Failed to delete image",
+        error: DELETE_IMAGE_FAIL,
       };
     }
 
@@ -161,7 +162,7 @@ export async function editCategory({
 
     if (!category) {
       return {
-        error: "Category not found",
+        error: CATEGORY_NOT_FOUND,
       };
     }
 
@@ -176,7 +177,7 @@ export async function editCategory({
         });
 
         return {
-          error: "Failed to delete image",
+          error: DELETE_IMAGE_FAIL,
         };
       }
     }

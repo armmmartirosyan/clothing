@@ -25,8 +25,6 @@ export const DASHBOARD_PAGES = [
   },
 ];
 
-export const INVALID_LOGIN_OR_PASS_ERROR = "Invalid login or password";
-
 export const CATEGORIES_TABLE_COLUMNS: readonly IColumn[] = [
   { id: 1, label: "ID", minWidth: 100 },
   { id: 2, label: "Image", minWidth: 170 },

@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { CAROUSEL_NOT_FOUND, DELETE_IMAGE_FAIL } from "@/constants/messages";
 import { backendClient } from "@/lib/edgestore-server";
 import prisma from "@/lib/prisma";
 import {
@@ -73,7 +74,7 @@ export async function deleteCarousel(id: string): Promise<GenericActionReturn> {
 
     if (!carousel) {
       return {
-        error: "Carousel not found",
+        error: CAROUSEL_NOT_FOUND,
       };
     }
 
@@ -83,7 +84,7 @@ export async function deleteCarousel(id: string): Promise<GenericActionReturn> {
 
     if (!success) {
       return {
-        error: "Failed to delete image",
+        error: DELETE_IMAGE_FAIL,
       };
     }
 
@@ -141,7 +142,7 @@ export async function editCarousel({
 
     if (!carousel) {
       return {
-        error: "Carousel not found",
+        error: CAROUSEL_NOT_FOUND,
       };
     }
 
@@ -156,7 +157,7 @@ export async function editCarousel({
         });
 
         return {
-          error: "Failed to delete image",
+          error: DELETE_IMAGE_FAIL,
         };
       }
     }

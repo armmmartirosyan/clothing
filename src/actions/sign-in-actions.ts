@@ -2,12 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import {
-  INVALID_LOGIN_OR_PASS_ERROR,
-  AUTH_COOKIES,
-  LOGIN,
-  PASS,
-} from "@/constants/shared-constants";
+import { INVALID_LOGIN_OR_PASS_ERROR } from "@/constants/messages";
+import { AUTH_COOKIES, LOGIN, PASS } from "@/constants/shared-constants";
 
 export async function signIn(formData: FormData): Promise<string> {
   const login = (formData.get("login")! as string).trim();

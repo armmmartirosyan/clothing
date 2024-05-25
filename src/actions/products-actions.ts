@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { DELETE_IMAGE_FAIL, PRODUCT_NOT_FOUND } from "@/constants/messages";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
 import prisma from "@/lib/prisma";
@@ -110,7 +111,7 @@ export async function deleteProduct(
 
     if (!product) {
       return {
-        error: "Product not found",
+        error: PRODUCT_NOT_FOUND,
       };
     }
 
@@ -120,7 +121,7 @@ export async function deleteProduct(
 
     if (!success) {
       return {
-        error: "Failed to delete image",
+        error: DELETE_IMAGE_FAIL,
       };
     }
 
@@ -188,7 +189,7 @@ export async function editProduct({
 
     if (!product) {
       return {
-        error: "Product not found",
+        error: PRODUCT_NOT_FOUND,
       };
     }
 
@@ -203,7 +204,7 @@ export async function editProduct({
         });
 
         return {
-          error: "Failed to delete image",
+          error: DELETE_IMAGE_FAIL,
         };
       }
     }
