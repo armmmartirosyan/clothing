@@ -5,10 +5,23 @@ import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
 import { IGetProductsActionReturn } from "@/types";
 import prisma from "@/lib/prisma";
+import {
+  addProductSchema,
+  editProductSchema,
+  imageSchema,
+  pageSchema,
+} from "@/utils/validators";
 
 export async function getProducts(
-  page: number
+  pageFromFront: number
 ): Promise<IGetProductsActionReturn> {
+  let page = pageFromFront;
+  const validatedPage = pageSchema.safeParse(page);
+
+  if (!validatedPage.success) {
+    page = 1;
+  }
+
   const [totalCount, products] = await prisma.$transaction([
     prisma.product.count(),
     prisma.product.findMany({
@@ -29,15 +42,31 @@ export const addProduct = async (formData: FormData) => {
   const oldPrice = Number(formData.get("oldPrice"));
   const isNew = !!formData.get("isNew");
   const categoryId = (formData.get("categoryId") || "") as string;
-  const file = formData.get("image")! as File;
+  const image = formData.get("image")! as File;
+
+  const validatedResult = addProductSchema.safeParse({
+    name,
+    description,
+    price,
+    oldPrice,
+    isNew,
+    categoryId,
+    image,
+  });
+
+  if (!validatedResult.success) {
+    return {
+      error: validatedResult.error.message,
+    };
+  }
 
   try {
-    const blob = new Blob([file], { type: file.type });
+    const blob = new Blob([image], { type: image.type });
 
     const { url: imageUrl } = await backendClient.myPublicImages.upload({
       content: {
         blob,
-        extension: file.type,
+        extension: image.type,
       },
     });
 
@@ -114,7 +143,22 @@ export const editProduct = async ({
   const oldPrice = Number(formData.get("oldPrice"));
   const isNew = !!formData.get("isNew");
   const categoryId = (formData.get("categoryId") || "") as string;
-  const file = formData.get("image") as File;
+  const image = formData.get("image") as File;
+
+  const validatedResult = editProductSchema.safeParse({
+    name,
+    description,
+    price,
+    oldPrice,
+    isNew,
+    categoryId,
+  });
+
+  if (!validatedResult.success) {
+    return {
+      error: validatedResult.error.message,
+    };
+  }
 
   try {
     let res = {} as {
@@ -125,13 +169,15 @@ export const editProduct = async ({
       pathOrder: string[];
     };
 
-    if (file.name && file.size) {
-      const blob = new Blob([file], { type: file.type });
+    const validatedImage = imageSchema.safeParse(image);
+
+    if (validatedImage.success) {
+      const blob = new Blob([image], { type: image.type });
 
       res = await backendClient.myPublicImages.upload({
         content: {
           blob,
-          extension: file.type,
+          extension: image.type,
         },
       });
     }

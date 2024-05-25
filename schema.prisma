@@ -48,3 +48,10 @@ model Product {
   categoryId  String
   category    Category @relation(fields: [categoryId], references: [id])
 }
+
+model Carousel {
+  id       String @id @default(cuid())
+  title    String
+  text     String
+  imageUrl String
+}

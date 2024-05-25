@@ -1,52 +1,36 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
-import { IGetCategoriesActionReturn } from "@/types";
+import { ICarousel } from "@/types";
 import prisma from "@/lib/prisma";
 import {
-  addCategorySchema,
-  pageSchema,
+  addCarouselSchema,
+  addProductSchema,
+  editCarouselSchema,
+  editProductSchema,
   imageSchema,
-  nameSchema,
+  pageSchema,
 } from "@/utils/validators";
 
-export async function getCategories(
-  pageFromFront: number
-): Promise<IGetCategoriesActionReturn> {
-  let page = pageFromFront;
-  const validatedPage = pageSchema.safeParse(page);
-
-  if (!validatedPage.success) {
-    page = 1;
-  }
-
-  const [totalCount, categories] = await prisma.$transaction([
-    prisma.category.count(),
-    prisma.category.findMany({
-      skip: (page - 1) * ROWS_PER_PAGE,
-      take: ROWS_PER_PAGE,
-    }),
-  ]);
-
-  const pageCount = Math.ceil(totalCount / ROWS_PER_PAGE);
-
-  return { categories, pageCount };
+export async function getCarousel(): Promise<ICarousel[]> {
+  return await prisma.carousel.findMany();
 }
 
-export const addCategory = async (formData: FormData) => {
-  const name = (formData.get("name") || "") as string;
+export const addCarousel = async (formData: FormData) => {
+  const title = (formData.get("title") || "") as string;
+  const text = (formData.get("text") || "") as string;
   const image = formData.get("image")! as File;
 
-  const validatedCategoryData = addCategorySchema.safeParse({
-    name,
+  const validatedResult = addCarouselSchema.safeParse({
+    title,
+    text,
     image,
   });
 
-  if (!validatedCategoryData.success) {
+  if (!validatedResult.success) {
     return {
-      error: validatedCategoryData.error.message,
+      error: validatedResult.error.message,
     };
   }
 
@@ -60,14 +44,15 @@ export const addCategory = async (formData: FormData) => {
       },
     });
 
-    await prisma.category.create({
+    await prisma.carousel.create({
       data: {
         imageUrl,
-        name,
+        title,
+        text,
       },
     });
 
-    revalidatePath("/dashboard/categories");
+    revalidatePath("/dashboard/carousel");
     return { error: null };
   } catch (error: any) {
     return {
@@ -76,22 +61,20 @@ export const addCategory = async (formData: FormData) => {
   }
 };
 
-export const deleteCategory = async (categoryId: string) => {
+export const deleteCarousel = async (id: string) => {
   try {
-    const category = await prisma.category.findUnique({
-      where: {
-        id: categoryId,
-      },
+    const carousel = await prisma.carousel.findUnique({
+      where: { id },
     });
 
-    if (!category) {
+    if (!carousel) {
       return {
-        error: "Category not found",
+        error: "Carousel not found",
       };
     }
 
     const { success } = await backendClient.myPublicImages.deleteFile({
-      url: category.imageUrl,
+      url: carousel.imageUrl,
     });
 
     if (!success) {
@@ -100,13 +83,11 @@ export const deleteCategory = async (categoryId: string) => {
       };
     }
 
-    await prisma.category.delete({
-      where: {
-        id: categoryId,
-      },
+    await prisma.product.delete({
+      where: { id },
     });
 
-    revalidatePath("/dashboard/categories");
+    revalidatePath("/dashboard/carousel");
     return { error: null };
   } catch (error: any) {
     return {
@@ -115,21 +96,25 @@ export const deleteCategory = async (categoryId: string) => {
   }
 };
 
-export const editCategory = async ({
+export const editCarousel = async ({
   id,
   formData,
 }: {
   id: string;
   formData: FormData;
 }) => {
-  const name = (formData.get("name") || "") as string;
+  const title = (formData.get("title") || "") as string;
+  const text = (formData.get("text") || "") as string;
   const image = formData.get("image") as File;
 
-  const validateNameResult = nameSchema.safeParse(name);
+  const validatedResult = editCarouselSchema.safeParse({
+    title,
+    text,
+  });
 
-  if (!validateNameResult.success) {
+  if (!validatedResult.success) {
     return {
-      error: validateNameResult.error.message,
+      error: validatedResult.error.message,
     };
   }
 
@@ -155,19 +140,19 @@ export const editCategory = async ({
       });
     }
 
-    const category = await prisma.category.findUnique({
+    const carousel = await prisma.carousel.findUnique({
       where: { id },
     });
 
-    if (!category) {
+    if (!carousel) {
       return {
-        error: "Category not found",
+        error: "Carousel not found",
       };
     }
 
     if (res.url) {
       const { success } = await backendClient.myPublicImages.deleteFile({
-        url: category.imageUrl,
+        url: carousel.imageUrl,
       });
 
       if (!success) {
@@ -181,17 +166,18 @@ export const editCategory = async ({
       }
     }
 
-    await prisma.category.update({
+    await prisma.carousel.update({
       where: {
         id,
       },
       data: {
-        imageUrl: res.url || category.imageUrl,
-        name,
+        imageUrl: res.url || carousel.imageUrl,
+        title,
+        text,
       },
     });
 
-    revalidatePath("/dashboard/categories");
+    revalidatePath("/dashboard/carousel");
     return { error: null };
   } catch (error: any) {
     return {

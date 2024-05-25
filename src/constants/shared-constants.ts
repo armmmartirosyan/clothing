@@ -19,6 +19,10 @@ export const DASHBOARD_PAGES = [
     name: "Categories",
     path: "/dashboard/categories",
   },
+  {
+    name: "Carousel",
+    path: "/dashboard/carousel",
+  },
 ];
 
 export const INVALID_LOGIN_OR_PASS_ERROR = "Invalid login or password";
@@ -40,6 +44,15 @@ export const PRODUCTS_TABLE_COLUMNS: readonly IColumn[] = [
   { id: 6, label: "Old price", minWidth: 100 },
   { id: 7, label: "New", minWidth: 100 },
   { id: 8, label: "Category ID", minWidth: 100 },
+  { id: 9, label: "", minWidth: 100 },
+  { id: 10, label: "", minWidth: 100 },
+];
+
+export const CAROUSEL_TABLE_COLUMNS: readonly IColumn[] = [
+  { id: 1, label: "ID", minWidth: 100 },
+  { id: 2, label: "Image", minWidth: 170 },
+  { id: 3, label: "Carousel title", minWidth: 100 },
+  { id: 4, label: "Carousel text", minWidth: 100 },
   { id: 9, label: "", minWidth: 100 },
   { id: 10, label: "", minWidth: 100 },
 ];
