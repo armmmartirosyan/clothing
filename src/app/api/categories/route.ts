@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { ICategory } from "@/types";
+import { GetCategoriesApiReturn } from "@/types";
 
-export async function GET(): Promise<NextResponse<ICategory[]>> {
+export async function GET(): Promise<GetCategoriesApiReturn> {
   const categories = await prisma.category.findMany();
 
   return NextResponse.json(categories, { status: 200 });

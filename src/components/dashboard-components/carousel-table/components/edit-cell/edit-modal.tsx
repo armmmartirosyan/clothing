@@ -2,6 +2,7 @@
 
 import { MouseEventHandler, RefObject, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
 import { editCarousel } from "@/actions/carousel-actions";
 import { Button } from "@/components/shared-components";
 import { ICarousel } from "@/types";
@@ -62,9 +63,9 @@ export function EditModal({
 
           <input
             type="file"
-            className={styles.input}
             name="image"
-            accept="image/png, image/jpeg"
+            className={styles.input}
+            accept={ACCEPTED_IMAGE_TYPES_STRING}
           />
           <Button>Edit</Button>
         </form>

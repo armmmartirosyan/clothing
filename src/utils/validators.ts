@@ -24,6 +24,12 @@ export const addProductSchema = z.object({
   image: imageSchema,
 });
 
+export const addCarouselSchema = z.object({
+  title: z.string(),
+  text: z.string(),
+  image: imageSchema,
+});
+
 export const editProductSchema = z.object({
   name: z.string(),
   description: z.string(),
@@ -31,12 +37,6 @@ export const editProductSchema = z.object({
   oldPrice: z.number(),
   isNew: z.boolean(),
   categoryId: z.string(),
-});
-
-export const addCarouselSchema = z.object({
-  title: z.string(),
-  text: z.string(),
-  image: imageSchema,
 });
 
 export const editCarouselSchema = z.object({

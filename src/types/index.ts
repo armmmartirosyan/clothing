@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 export interface INavItem {
   name: string;
   path: string;
@@ -33,16 +35,4 @@ export interface ICarousel {
   imageUrl: string;
 }
 
-export interface IPageSearchParams {
-  [key: string]: string;
-}
-
-export interface IGetCategoriesActionReturn {
-  categories: ICategory[];
-  pageCount: number;
-}
-
-export interface IGetProductsActionReturn {
-  products: IProduct[];
-  pageCount: number;
-}
+export type GetCategoriesApiReturn = NextResponse<ICategory[]>;

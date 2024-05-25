@@ -3,8 +3,13 @@
 import { revalidatePath } from "next/cache";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
-import { IGetProductsActionReturn } from "@/types";
 import prisma from "@/lib/prisma";
+import {
+  EditActionArgs,
+  GenericActionReturn,
+  GetProductsActionReturn,
+  UploadImageReturn,
+} from "@/types/action-types";
 import {
   addProductSchema,
   editProductSchema,
@@ -14,7 +19,7 @@ import {
 
 export async function getProducts(
   pageFromFront: number
-): Promise<IGetProductsActionReturn> {
+): Promise<GetProductsActionReturn> {
   let page = pageFromFront;
   const validatedPage = pageSchema.safeParse(page);
 
@@ -35,7 +40,9 @@ export async function getProducts(
   return { products, pageCount };
 }
 
-export const addProduct = async (formData: FormData) => {
+export async function addProduct(
+  formData: FormData
+): Promise<GenericActionReturn> {
   const name = (formData.get("name") || "") as string;
   const description = (formData.get("description") || "") as string;
   const price = Number(formData.get("price"));
@@ -89,9 +96,11 @@ export const addProduct = async (formData: FormData) => {
       error,
     };
   }
-};
+}
 
-export const deleteProduct = async (productId: string) => {
+export async function deleteProduct(
+  productId: string
+): Promise<GenericActionReturn> {
   try {
     const product = await prisma.product.findUnique({
       where: {
@@ -128,15 +137,12 @@ export const deleteProduct = async (productId: string) => {
       error,
     };
   }
-};
+}
 
-export const editProduct = async ({
+export async function editProduct({
   id,
   formData,
-}: {
-  id: string;
-  formData: FormData;
-}) => {
+}: EditActionArgs): Promise<GenericActionReturn> {
   const name = (formData.get("name") || "") as string;
   const description = (formData.get("description") || "") as string;
   const price = Number(formData.get("price"));
@@ -161,13 +167,7 @@ export const editProduct = async ({
   }
 
   try {
-    let res = {} as {
-      url: string;
-      size: number;
-      metadata: Record<string, never>;
-      path: Record<string, never>;
-      pathOrder: string[];
-    };
+    let res = {} as UploadImageReturn;
 
     const validatedImage = imageSchema.safeParse(image);
 
@@ -230,4 +230,4 @@ export const editProduct = async ({
       error,
     };
   }
-};
+}

@@ -3,8 +3,13 @@
 import { revalidatePath } from "next/cache";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
-import { IGetCategoriesActionReturn } from "@/types";
 import prisma from "@/lib/prisma";
+import {
+  EditActionArgs,
+  GenericActionReturn,
+  GetCategoriesActionReturn,
+  UploadImageReturn,
+} from "@/types/action-types";
 import {
   addCategorySchema,
   pageSchema,
@@ -14,7 +19,7 @@ import {
 
 export async function getCategories(
   pageFromFront: number
-): Promise<IGetCategoriesActionReturn> {
+): Promise<GetCategoriesActionReturn> {
   let page = pageFromFront;
   const validatedPage = pageSchema.safeParse(page);
 
@@ -35,7 +40,9 @@ export async function getCategories(
   return { categories, pageCount };
 }
 
-export const addCategory = async (formData: FormData) => {
+export async function addCategory(
+  formData: FormData
+): Promise<GenericActionReturn> {
   const name = (formData.get("name") || "") as string;
   const image = formData.get("image")! as File;
 
@@ -74,9 +81,11 @@ export const addCategory = async (formData: FormData) => {
       error,
     };
   }
-};
+}
 
-export const deleteCategory = async (categoryId: string) => {
+export async function deleteCategory(
+  categoryId: string
+): Promise<GenericActionReturn> {
   try {
     const category = await prisma.category.findUnique({
       where: {
@@ -113,15 +122,12 @@ export const deleteCategory = async (categoryId: string) => {
       error,
     };
   }
-};
+}
 
-export const editCategory = async ({
+export async function editCategory({
   id,
   formData,
-}: {
-  id: string;
-  formData: FormData;
-}) => {
+}: EditActionArgs): Promise<GenericActionReturn> {
   const name = (formData.get("name") || "") as string;
   const image = formData.get("image") as File;
 
@@ -134,13 +140,7 @@ export const editCategory = async ({
   }
 
   try {
-    let res = {} as {
-      url: string;
-      size: number;
-      metadata: Record<string, never>;
-      path: Record<string, never>;
-      pathOrder: string[];
-    };
+    let res = {} as UploadImageReturn;
 
     const validatedImage = imageSchema.safeParse(image);
 
@@ -198,4 +198,4 @@ export const editCategory = async ({
       error,
     };
   }
-};
+}

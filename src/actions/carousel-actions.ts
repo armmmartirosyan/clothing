@@ -2,22 +2,26 @@
 
 import { revalidatePath } from "next/cache";
 import { backendClient } from "@/lib/edgestore-server";
-import { ICarousel } from "@/types";
 import prisma from "@/lib/prisma";
 import {
+  EditActionArgs,
+  GenericActionReturn,
+  GetCarouselAction,
+  UploadImageReturn,
+} from "@/types/action-types";
+import {
   addCarouselSchema,
-  addProductSchema,
   editCarouselSchema,
-  editProductSchema,
   imageSchema,
-  pageSchema,
 } from "@/utils/validators";
 
-export async function getCarousel(): Promise<ICarousel[]> {
+export async function getCarousel(): Promise<GetCarouselAction> {
   return await prisma.carousel.findMany();
 }
 
-export const addCarousel = async (formData: FormData) => {
+export async function addCarousel(
+  formData: FormData
+): Promise<GenericActionReturn> {
   const title = (formData.get("title") || "") as string;
   const text = (formData.get("text") || "") as string;
   const image = formData.get("image")! as File;
@@ -59,9 +63,9 @@ export const addCarousel = async (formData: FormData) => {
       error,
     };
   }
-};
+}
 
-export const deleteCarousel = async (id: string) => {
+export async function deleteCarousel(id: string): Promise<GenericActionReturn> {
   try {
     const carousel = await prisma.carousel.findUnique({
       where: { id },
@@ -94,15 +98,12 @@ export const deleteCarousel = async (id: string) => {
       error,
     };
   }
-};
+}
 
-export const editCarousel = async ({
+export async function editCarousel({
   id,
   formData,
-}: {
-  id: string;
-  formData: FormData;
-}) => {
+}: EditActionArgs): Promise<GenericActionReturn> {
   const title = (formData.get("title") || "") as string;
   const text = (formData.get("text") || "") as string;
   const image = formData.get("image") as File;
@@ -119,13 +120,7 @@ export const editCarousel = async ({
   }
 
   try {
-    let res = {} as {
-      url: string;
-      size: number;
-      metadata: Record<string, never>;
-      path: Record<string, never>;
-      pathOrder: string[];
-    };
+    let res = {} as UploadImageReturn;
 
     const validatedImage = imageSchema.safeParse(image);
 
@@ -184,4 +179,4 @@ export const editCarousel = async ({
       error,
     };
   }
-};
+}

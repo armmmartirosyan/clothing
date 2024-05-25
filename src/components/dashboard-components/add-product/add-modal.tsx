@@ -2,9 +2,10 @@
 
 import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
+import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
 import { addProduct } from "@/actions/products-actions";
-import { CategorySelect } from "./category-select";
 import { Button } from "@/components/shared-components";
+import { CategorySelect } from "./category-select";
 import styles from "./index.module.css";
 
 export function AddModal({
@@ -65,11 +66,11 @@ export function AddModal({
           <CategorySelect />
 
           <input
-            type="file"
-            className={styles.input}
-            name="image"
             required
-            accept="image/png, image/jpeg"
+            type="file"
+            name="image"
+            className={styles.input}
+            accept={ACCEPTED_IMAGE_TYPES_STRING}
           />
 
           <label htmlFor="is-new">

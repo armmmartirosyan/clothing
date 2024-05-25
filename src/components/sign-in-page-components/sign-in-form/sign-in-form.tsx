@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { JSX } from "react";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Avatar from "@mui/material/Avatar";
@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { signIn } from "@/actions/sign-in-actions";
 
-export function SignInForm() {
+export function SignInForm(): JSX.Element {
   const handleSignIn = async (formData: FormData) => {
     const error = await signIn(formData);
 

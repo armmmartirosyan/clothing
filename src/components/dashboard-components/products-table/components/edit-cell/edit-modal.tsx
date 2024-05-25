@@ -2,8 +2,9 @@
 
 import { MouseEventHandler, RefObject, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button } from "@/components/shared-components";
+import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
 import { editProduct } from "@/actions/products-actions";
+import { Button } from "@/components/shared-components";
 import { CategorySelect } from "./category-select";
 import { IProduct } from "@/types";
 import styles from "./index.module.css";
@@ -81,9 +82,9 @@ export function EditModal({
 
           <input
             type="file"
-            className={styles.input}
             name="image"
-            accept="image/png, image/jpeg"
+            className={styles.input}
+            accept={ACCEPTED_IMAGE_TYPES_STRING}
           />
 
           <label htmlFor="is-new">

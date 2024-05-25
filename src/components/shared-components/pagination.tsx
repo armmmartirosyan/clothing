@@ -1,11 +1,12 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, JSX } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { Pagination as MUIPagination } from "@mui/material";
+import { PaginationProps } from "@/types/component-types";
 
-export function Pagination({ page, count }: { page: number; count: number }) {
-  const pathname = usePathname();
+export function Pagination({ page, count }: PaginationProps): JSX.Element {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleChange = (_: ChangeEvent<unknown>, page: number) => {
     router.push(pathname + "?page=" + page);

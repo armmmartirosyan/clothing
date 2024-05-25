@@ -63,3 +63,5 @@ export const ACCEPTED_IMAGE_TYPES = [
   "image/png",
   "image/webp",
 ];
+
+export const ACCEPTED_IMAGE_TYPES_STRING = ACCEPTED_IMAGE_TYPES.join(" ");

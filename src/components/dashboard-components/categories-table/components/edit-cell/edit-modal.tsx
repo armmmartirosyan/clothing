@@ -2,6 +2,7 @@
 
 import CloseIcon from "@mui/icons-material/Close";
 import { MouseEventHandler, RefObject, useRef } from "react";
+import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
 import { editCategory } from "@/actions/categories-actions";
 import { Button } from "@/components/shared-components";
 import { ICategory } from "@/types";
@@ -53,9 +54,9 @@ export function EditModal({
           />
           <input
             type="file"
-            className={styles.input}
             name="image"
-            accept="image/png, image/jpeg"
+            className={styles.input}
+            accept={ACCEPTED_IMAGE_TYPES_STRING}
           />
           <Button>Edit</Button>
         </form>

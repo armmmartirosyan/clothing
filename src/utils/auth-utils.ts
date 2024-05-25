@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { AUTH_COOKIES } from "@/constants/shared-constants";
 
 class AuthUtils {
-  public requireAuth(cookieStore: ReadonlyRequestCookies) {
+  public requireAuth(cookieStore: ReadonlyRequestCookies): void {
     const authCookie = cookieStore.get(AUTH_COOKIES.name);
 
     if (authCookie?.value !== AUTH_COOKIES.value) {
@@ -11,7 +11,7 @@ class AuthUtils {
     }
   }
 
-  public requireNotAuth(cookieStore: ReadonlyRequestCookies) {
+  public requireNotAuth(cookieStore: ReadonlyRequestCookies): void {
     const authCookie = cookieStore.get(AUTH_COOKIES.name);
 
     if (authCookie?.value === AUTH_COOKIES.value) {

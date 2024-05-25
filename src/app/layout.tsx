@@ -1,7 +1,9 @@
+import { JSX } from "react";
 import { Open_Sans } from "next/font/google";
+import { OnlyChildrenProps } from "@/types/component-types";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -15,9 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<OnlyChildrenProps>): JSX.Element {
   return (
     <html lang="en">
       <head>

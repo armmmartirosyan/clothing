@@ -1,17 +1,15 @@
-import { Suspense } from "react";
+import { Suspense, JSX } from "react";
 import { cookies } from "next/headers";
 import { ProductsTable } from "@/components/dashboard-components";
 import { AddProduct } from "@/components/dashboard-components";
+import { OnlyPageSearchParams } from "@/types/component-types";
 import { getProducts } from "@/actions/products-actions";
 import { authUtils } from "@/utils/auth-utils";
-import { IPageSearchParams } from "@/types";
 import styles from "@/styles/dashboard.module.css";
 
 export default async function Products({
   searchParams,
-}: {
-  searchParams: IPageSearchParams;
-}) {
+}: OnlyPageSearchParams): Promise<JSX.Element> {
   const cookieStore = cookies();
   const page = +searchParams.page || 1;
   authUtils.requireAuth(cookieStore);

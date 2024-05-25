@@ -2,6 +2,7 @@
 
 import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
+import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
 import { addCategory } from "@/actions/categories-actions";
 import { Button } from "@/components/shared-components";
 import styles from "./index.module.css";
@@ -40,11 +41,11 @@ export function AddModal({
             required
           />
           <input
-            type="file"
+            accept={ACCEPTED_IMAGE_TYPES_STRING}
             className={styles.input}
             name="image"
+            type="file"
             required
-            accept="image/png, image/jpeg"
           />
           <Button>Add</Button>
         </form>

@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import {
   Banner,
   Categories,
@@ -8,7 +9,7 @@ import {
   TopHeader,
 } from "@/components/home-page-components";
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <>
       <TopHeader />
