@@ -12,10 +12,10 @@ import {
   UploadImageReturn,
 } from "@/types/action-types";
 import {
+  editCategorySchema,
   addCategorySchema,
   pageSchema,
   imageSchema,
-  nameSchema,
 } from "@/utils/validators";
 
 export async function getCategories(
@@ -132,7 +132,7 @@ export async function editCategory({
   const name = (formData.get("name") || "") as string;
   const image = formData.get("image") as File;
 
-  const validateNameResult = nameSchema.safeParse(name);
+  const validateNameResult = editCategorySchema.safeParse({ name });
 
   if (!validateNameResult.success) {
     return {
