@@ -8,7 +8,9 @@ import prisma from "@/lib/prisma";
 import {
   EditActionArgs,
   GenericActionReturn,
+  GetProductByIdActionReturn,
   GetProductsActionReturn,
+  GetProductsByCategoryActionReturn,
   UploadImageReturn,
 } from "@/types/action-types";
 import {
@@ -17,6 +19,7 @@ import {
   imageSchema,
   pageSchema,
 } from "@/utils/validators";
+import { IProduct } from "@/types";
 
 export async function getProducts(
   pageFromFront: number
@@ -39,6 +42,22 @@ export async function getProducts(
   const pageCount = Math.ceil(totalCount / ROWS_PER_PAGE);
 
   return { products, pageCount };
+}
+
+export async function getProductById(
+  id: string
+): Promise<GetProductByIdActionReturn> {
+  return await prisma.product.findUnique({
+    where: { id },
+  });
+}
+
+export async function getProductsByCategory(
+  categoryId: string
+): Promise<GetProductsByCategoryActionReturn> {
+  return await prisma.product.findMany({
+    where: { categoryId },
+  });
 }
 
 export async function addProduct(
