@@ -1,7 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { CATEGORY_NOT_FOUND, DELETE_IMAGE_FAIL } from "@/constants/messages";
+import {
+  CATEGORY_HAS_PRODUCT,
+  CATEGORY_NOT_FOUND,
+  DELETE_IMAGE_FAIL,
+} from "@/constants/messages";
 import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
 import prisma from "@/lib/prisma";
@@ -97,6 +101,18 @@ export async function deleteCategory(
     if (!category) {
       return {
         error: CATEGORY_NOT_FOUND,
+      };
+    }
+
+    const productInThisCategory = await prisma.product.findMany({
+      where: {
+        categoryId,
+      },
+    });
+
+    if (productInThisCategory.length) {
+      return {
+        error: CATEGORY_HAS_PRODUCT,
       };
     }
 

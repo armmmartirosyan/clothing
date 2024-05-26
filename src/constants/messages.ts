@@ -6,4 +6,7 @@ export const CAROUSEL_NOT_FOUND = "Carousel not found";
 
 export const CATEGORY_NOT_FOUND = "Category not found";
 
+export const CATEGORY_HAS_PRODUCT =
+  "You have products of this category, please first remove that products.";
+
 export const PRODUCT_NOT_FOUND = "Product not found";
