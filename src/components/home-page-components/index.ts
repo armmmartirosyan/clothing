@@ -1,6 +1,6 @@
-export { Banner } from "./banner-c";
-export { Categories } from "./categories-c";
-export { Features } from "./features-c";
-export { Footer } from "./footer-c";
+export { Banner } from "./banner";
+export { Categories } from "./categories";
+export { Features } from "./features";
+export { Footer } from "./footer";
 export { NewProducts } from "./new-products";
 export { Header } from "./header";
