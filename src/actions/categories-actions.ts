@@ -24,6 +24,12 @@ export async function getCategories(): Promise<ICategory[]> {
   return await prisma.category.findMany();
 }
 
+export async function getCategoriesForHome(): Promise<ICategory[]> {
+  return await prisma.category.findMany({
+    take: 4,
+  });
+}
+
 export async function addCategory(
   formData: FormData
 ): Promise<GenericActionReturn> {

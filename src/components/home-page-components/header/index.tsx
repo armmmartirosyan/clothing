@@ -1,8 +1,9 @@
+import { JSX } from "react";
 import Image from "next/image";
 import logo from "@/images/logo.png";
 import styles from "./index.module.css";
 
-export function Header() {
+export function Header(): JSX.Element {
   return (
     <div className="top-header">
       <div className="container">

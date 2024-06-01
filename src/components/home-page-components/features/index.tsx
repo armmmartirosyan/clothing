@@ -1,4 +1,6 @@
-export function Features() {
+import { JSX } from "react";
+
+export function Features(): JSX.Element {
   return (
     <div className="feature">
       <div className="container-fluid">

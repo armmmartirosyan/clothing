@@ -355,7 +355,6 @@ button.btn {
 .category .category-img {
   position: relative;
   overflow: hidden;
-  margin-bottom: 15px;
 }
 
 .category .category-img img {
@@ -581,7 +580,7 @@ button.btn {
 }
 
 .product-item .product-content .price {
-  font-size: 30px;
+  font-size: 25px;
   color: #3f69aa;
   font-weight: 700;
 }
@@ -591,6 +590,7 @@ button.btn {
   text-decoration: line-through;
   font-weight: 700;
   color: #666666;
+  font-size: 20px;
 }
 
 .product-slider.slick-slider:hover .slick-prev {

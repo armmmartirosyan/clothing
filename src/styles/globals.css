@@ -4,3 +4,11 @@
 .dashboard_main {
   padding: 0 10px 10px;
 }
+
+.nuka-wrapper {
+  width: fit-content;
+}
+
+.nuka-overflow {
+  overflow: hidden !important;
+}

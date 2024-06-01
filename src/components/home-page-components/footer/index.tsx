@@ -1,9 +1,12 @@
-export function Footer() {
+import { JSX } from "react";
+import styles from "./index.module.css";
+
+export function Footer(): JSX.Element {
   return (
     <>
       <div className="footer">
         <div className="container-fluid">
-          <div className="row">
+          <div className={`row ${styles.row}`}>
             <div className="col-lg-3 col-md-6">
               <div className="footer-widget">
                 <h1>E Shop</h1>

@@ -1,25 +1,28 @@
 "use client";
 
+import { JSX } from "react";
 import { Carousel as NukaCarousel } from "nuka-carousel";
-import { ICarousel } from "@/types";
+import { BannerCarouselProps } from "@/types/component-types";
 import styles from "./index.module.css";
 
-export function Carousel({ carousel }: { carousel: ICarousel[] }) {
+export function Carousel({ carousel }: BannerCarouselProps): JSX.Element {
   return (
     <NukaCarousel
       className={styles.main_slider}
-      autoplay
-      showDots
-      showArrows
-      wrapMode="wrap"
+      autoplayInterval={5000}
       scrollDistance="slide"
+      showArrows
+      showDots
+      autoplay
     >
       {carousel.map((carouselItem) => (
-        <img
-          alt={carouselItem.title}
-          src={carouselItem.imageUrl}
-          key={carouselItem.id}
-        />
+        <figure className={styles.item} key={carouselItem.id}>
+          <img
+            src={carouselItem.imageUrl}
+            className={styles.image}
+            alt={carouselItem.title}
+          />
+        </figure>
       ))}
     </NukaCarousel>
   );
