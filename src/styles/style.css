@@ -310,10 +310,7 @@ button.btn {
 .home-slider {
   position: relative;
   width: 100%;
-}
-
-.home-slider .main-slider-item {
-  padding: 0 7.5px;
+  height: 400px;
 }
 
 .home-slider .slick-dots {
@@ -1000,7 +997,7 @@ button.btn {
 
 .sidebar-widget.brands ul li span,
 .sidebar-widget.category ul li span {
-  display: inline-block;
+  display: block;
   float: right;
   color: #666666;
   font-size: 14px;
@@ -1623,6 +1620,18 @@ button.btn {
   padding-top: 25px;
   padding-bottom: 25px;
   border-top: 1px solid #4977bf;
+}
+
+.nuka-slide-container,
+.nuka-overflow,
+.nuka-wrapper {
+  height: 100%;
+}
+
+.nuka-page-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 @media (min-width: 992px) {

@@ -8,19 +8,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import { CATEGORIES_TABLE_COLUMNS } from "@/constants/shared-constants";
-import { Pagination } from "@/components/shared-components";
 import { ICategory } from "@/types";
 import { Row } from "./row";
 
-export function CategoriesTable({
-  page,
-  pageCount,
-  categories,
-}: {
-  page: number;
-  pageCount: number;
-  categories: ICategory[];
-}) {
+export function CategoriesTable({ categories }: { categories: ICategory[] }) {
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 500 }}>
@@ -44,7 +35,6 @@ export function CategoriesTable({
           </TableBody>
         </Table>
       </TableContainer>
-      <Pagination page={page} count={pageCount} />
     </Paper>
   );
 }

@@ -1,23 +1,27 @@
-import { JSX } from "react";
+import { JSX, Suspense } from "react";
 import {
   Banner,
   Categories,
   Features,
   Footer,
+  NewProducts,
   Header,
-  RecentProducts,
-  TopHeader,
 } from "@/components/home-page-components";
 
 export default function Home(): JSX.Element {
   return (
     <>
-      <TopHeader />
       <Header />
-      <Banner />
+      <Suspense fallback={"Loading banner..."}>
+        <Banner />
+      </Suspense>
       <Features />
-      <Categories />
-      <RecentProducts />
+      <Suspense fallback={"Loading categories..."}>
+        <Categories />
+      </Suspense>
+      <Suspense fallback={"Loading new products..."}>
+        <NewProducts />
+      </Suspense>
       <Footer />
     </>
   );

@@ -6,43 +6,22 @@ import {
   CATEGORY_NOT_FOUND,
   DELETE_IMAGE_FAIL,
 } from "@/constants/messages";
-import { ROWS_PER_PAGE } from "@/constants/shared-constants";
 import { backendClient } from "@/lib/edgestore-server";
 import prisma from "@/lib/prisma";
 import {
   EditActionArgs,
   GenericActionReturn,
-  GetCategoriesActionReturn,
   UploadImageReturn,
 } from "@/types/action-types";
 import {
   editCategorySchema,
   addCategorySchema,
-  pageSchema,
   imageSchema,
 } from "@/utils/validators";
+import { ICategory } from "@/types";
 
-export async function getCategories(
-  pageFromFront: number
-): Promise<GetCategoriesActionReturn> {
-  let page = pageFromFront;
-  const validatedPage = pageSchema.safeParse(page);
-
-  if (!validatedPage.success) {
-    page = 1;
-  }
-
-  const [totalCount, categories] = await prisma.$transaction([
-    prisma.category.count(),
-    prisma.category.findMany({
-      skip: (page - 1) * ROWS_PER_PAGE,
-      take: ROWS_PER_PAGE,
-    }),
-  ]);
-
-  const pageCount = Math.ceil(totalCount / ROWS_PER_PAGE);
-
-  return { categories, pageCount };
+export async function getCategories(): Promise<ICategory[]> {
+  return await prisma.category.findMany();
 }
 
 export async function addCategory(

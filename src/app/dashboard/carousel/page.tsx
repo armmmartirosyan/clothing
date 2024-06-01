@@ -4,7 +4,6 @@ import { CarouselTable } from "@/components/dashboard-components";
 import { AddCarousel } from "@/components/dashboard-components";
 import { getCarousel } from "@/actions/carousel-actions";
 import { authUtils } from "@/utils/auth-utils";
-import styles from "@/styles/dashboard.module.css";
 
 export default async function Carousel(): Promise<JSX.Element> {
   const cookieStore = cookies();
@@ -13,7 +12,7 @@ export default async function Carousel(): Promise<JSX.Element> {
   const carousel = await getCarousel();
 
   return (
-    <main className={styles.main}>
+    <main className="dashboard_main">
       <AddCarousel />
       <Suspense fallback="Loading...">
         <CarouselTable carousel={carousel} />

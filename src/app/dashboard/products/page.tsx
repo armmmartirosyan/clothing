@@ -5,7 +5,6 @@ import { AddProduct } from "@/components/dashboard-components";
 import { OnlyPageSearchParams } from "@/types/component-types";
 import { getProducts } from "@/actions/products-actions";
 import { authUtils } from "@/utils/auth-utils";
-import styles from "@/styles/dashboard.module.css";
 
 export default async function Products({
   searchParams,
@@ -17,7 +16,7 @@ export default async function Products({
   const { products, pageCount } = await getProducts(page);
 
   return (
-    <main className={styles.main}>
+    <main className="dashboard_main">
       <AddProduct />
       <Suspense fallback="Loading...">
         <ProductsTable page={page} products={products} pageCount={pageCount} />

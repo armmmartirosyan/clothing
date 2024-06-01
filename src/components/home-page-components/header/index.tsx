@@ -1,18 +1,20 @@
-import { stringUtils } from "@/utils/string-utils";
 import Image from "next/image";
+import logo from "@/images/logo.png";
+import styles from "./index.module.css";
 
-export function TopHeader() {
+export function Header() {
   return (
     <div className="top-header">
       <div className="container">
-        <div className="row align-items-center">
+        <div className={`row align-items-center ${styles.container}`}>
           <div className="col-md-3">
             <div className="logo">
-              <a href="">
+              <a href="/">
                 <Image
-                  width={500}
-                  height={500}
-                  src={stringUtils.normalizeImageSrc("images/logo.png")}
+                  style={{ objectFit: "contain" }}
+                  width={150}
+                  height={60}
+                  src={logo}
                   alt="Logo"
                 />
               </a>

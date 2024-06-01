@@ -1,2 +1,6 @@
 @import "./reset.css";
 @import "./style.css";
+
+.dashboard_main {
+  padding: 0 10px 10px;
+}

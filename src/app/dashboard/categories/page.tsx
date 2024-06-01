@@ -1,32 +1,23 @@
 import { Suspense, JSX } from "react";
 import { cookies } from "next/headers";
-import { OnlyPageSearchParams } from "@/types/component-types";
 import { getCategories } from "@/actions/categories-actions";
 import { authUtils } from "@/utils/auth-utils";
 import {
   CategoriesTable,
   AddCategory,
 } from "@/components/dashboard-components";
-import styles from "@/styles/dashboard.module.css";
 
-export default async function Categories({
-  searchParams,
-}: OnlyPageSearchParams): Promise<JSX.Element> {
+export default async function Categories(): Promise<JSX.Element> {
   const cookieStore = cookies();
-  const page = +searchParams.page || 1;
   authUtils.requireAuth(cookieStore);
 
-  const { categories, pageCount } = await getCategories(page);
+  const categories = await getCategories();
 
   return (
-    <main className={styles.main}>
+    <main className="dashboard_main">
       <AddCategory />
       <Suspense fallback="Loading...">
-        <CategoriesTable
-          page={page}
-          categories={categories}
-          pageCount={pageCount}
-        />
+        <CategoriesTable categories={categories} />
       </Suspense>
     </main>
   );

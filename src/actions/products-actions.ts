@@ -44,6 +44,14 @@ export async function getProducts(
   return { products, pageCount };
 }
 
+export async function getNewProducts(): Promise<IProduct[]> {
+  return await prisma.product.findMany({
+    where: {
+      isNew: true,
+    },
+  });
+}
+
 export async function getProductById(
   id: string
 ): Promise<GetProductByIdActionReturn> {
