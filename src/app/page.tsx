@@ -10,7 +10,7 @@ import {
 
 export default function Home(): JSX.Element {
   return (
-    <>
+    <div className="page_wrapper">
       <Header />
       <Suspense fallback={"Loading banner..."}>
         <Banner />
@@ -23,6 +23,6 @@ export default function Home(): JSX.Element {
         <NewProducts />
       </Suspense>
       <Footer />
-    </>
+    </div>
   );
 }

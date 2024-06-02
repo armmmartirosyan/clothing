@@ -35,4 +35,10 @@ export interface ICarousel {
   imageUrl: string;
 }
 
+export type GetProductsPageSearchParamsReturn = {
+  categoryIds: string[];
+  search: string;
+  page: number;
+};
+
 export type GetCategoriesApiReturn = NextResponse<ICategory[]>;

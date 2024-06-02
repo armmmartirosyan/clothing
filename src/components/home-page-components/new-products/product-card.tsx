@@ -7,18 +7,18 @@ export function ProductCard({ product }: ProductCardProps): JSX.Element {
     <div className={` ${styles.item}`}>
       <div className={`product-item ${styles.product_card}`}>
         <div className={`product-image ${styles.product_image}`}>
-          <a href="product-detail.html">
+          <a href={`/product/${product.id}`}>
             <img src={product.imageUrl} alt={product.name} />
           </a>
           <div className="product-action">
-            <a href="#">
+            <a href={`/product/${product.id}`}>
               <i className="fa fa-search"></i>
             </a>
           </div>
         </div>
         <div className="product-content">
           <div className="title">
-            <a href="#">{product.name}</a>
+            <a href={`/product/${product.id}`}>{product.name}</a>
           </div>
           <div className="price">
             {product.price}AMD <br />

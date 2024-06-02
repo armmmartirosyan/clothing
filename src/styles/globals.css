@@ -12,3 +12,8 @@
 .nuka-overflow {
   overflow: hidden !important;
 }
+
+.page_wrapper {
+  width: 100vw;
+  overflow-x: hidden;
+}

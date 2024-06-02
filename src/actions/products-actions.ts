@@ -8,6 +8,7 @@ import prisma from "@/lib/prisma";
 import {
   EditActionArgs,
   GenericActionReturn,
+  GetListingProductsArgs,
   GetProductByIdActionReturn,
   GetProductsActionReturn,
   GetProductsByCategoryActionReturn,
@@ -15,9 +16,11 @@ import {
 } from "@/types/action-types";
 import {
   addProductSchema,
+  categoryIdSchema,
   editProductSchema,
   imageSchema,
   pageSchema,
+  searchSchema,
 } from "@/utils/validators";
 import { IProduct } from "@/types";
 
@@ -36,6 +39,44 @@ export async function getProducts(
     prisma.product.findMany({
       skip: (page - 1) * ROWS_PER_PAGE,
       take: ROWS_PER_PAGE,
+    }),
+  ]);
+
+  const pageCount = Math.ceil(totalCount / ROWS_PER_PAGE);
+
+  return { products, pageCount };
+}
+
+export async function getListingProducts({
+  categoryIds,
+  search,
+  page,
+}: GetListingProductsArgs): Promise<GetProductsActionReturn> {
+  const validatedCategoryIds = categoryIdSchema.safeParse(categoryIds);
+  const validatedSearch = searchSchema.safeParse(search);
+  const validatedPage = pageSchema.safeParse(page);
+  const where: any = {};
+
+  let localPage = page as number;
+
+  if (!validatedPage.success) {
+    page = 1;
+  }
+
+  if (validatedSearch.success) {
+    where.name = { contains: search, mode: "insensitive" };
+  }
+
+  if (validatedCategoryIds.success) {
+    where.categoryId = { in: categoryIds };
+  }
+
+  const [totalCount, products] = await prisma.$transaction([
+    prisma.product.count(),
+    prisma.product.findMany({
+      skip: (localPage - 1) * ROWS_PER_PAGE,
+      take: ROWS_PER_PAGE,
+      where,
     }),
   ]);
 

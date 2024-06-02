@@ -2,6 +2,8 @@ import { z } from "zod";
 import { ACCEPTED_IMAGE_TYPES } from "@/constants/shared-constants";
 
 export const pageSchema = z.coerce.number().int().gte(1);
+export const categoryIdSchema = z.array(z.string()).min(1);
+export const searchSchema = z.string().min(1);
 
 export const imageSchema = z
   .any()

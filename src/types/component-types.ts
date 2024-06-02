@@ -21,3 +21,11 @@ export type BannerCarouselProps = { carousel: ICarousel[] };
 export type OnlyChildrenProps = { children: ReactNode };
 
 export type ProductCardProps = { product: IProduct };
+
+export type ProductPageProps = {
+  params: { id: string };
+};
+
+export type RelatedProductsProps = {
+  categoryId: string;
+};

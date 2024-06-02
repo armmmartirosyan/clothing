@@ -12,6 +12,12 @@ export type GetProductsActionReturn = {
   pageCount: number;
 };
 
+export type GetListingProductsArgs = {
+  categoryIds: string[];
+  search: string;
+  page: number;
+};
+
 export type GetProductByIdActionReturn = IProduct | null;
 
 export type GetProductsByCategoryActionReturn = IProduct[];
