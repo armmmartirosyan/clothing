@@ -1,8 +1,8 @@
 "use client";
 
-import CloseIcon from "@mui/icons-material/Close";
 import { RefObject, useRef } from "react";
 import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
+import { CloseIcon } from "@/components/shared-components";
 import { addCarousel } from "@/actions/carousel-actions";
 import { Button } from "@/components/shared-components";
 import styles from "./index.module.css";
@@ -30,9 +30,9 @@ export function AddModal({
   return (
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialog_container}>
-        <CloseIcon className={styles.close} onClick={closeDialog} />
         <h2 className={styles.title}>Add carousel</h2>
         <form action={handleAdd} className={styles.form} ref={formRef}>
+          <CloseIcon className={styles.close} onClick={closeDialog} />
           <input
             type="text"
             className={styles.input}

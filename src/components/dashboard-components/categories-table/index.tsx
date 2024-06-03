@@ -14,7 +14,7 @@ import { Row } from "./row";
 export function CategoriesTable({ categories }: { categories: ICategory[] }) {
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <TableContainer sx={{ maxHeight: 500 }}>
+      <TableContainer>
         <Table aria-label="sticky table">
           <TableHead>
             <TableRow>

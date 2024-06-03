@@ -1,8 +1,8 @@
 "use client";
 
 import { MouseEventHandler, RefObject, useRef } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
+import { CloseIcon } from "@/components/shared-components";
 import { editCarousel } from "@/actions/carousel-actions";
 import { Button } from "@/components/shared-components";
 import { ICarousel } from "@/types";
@@ -41,9 +41,9 @@ export function EditModal({
   return (
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialog_container}>
-        <CloseIcon className={styles.close} onClick={handleCloseIconClick} />
         <h2 className={styles.title}>Edit carousel</h2>
         <form action={handleEdit} className={styles.form} ref={formRef}>
+          <CloseIcon className={styles.close} onClick={handleCloseIconClick} />
           <input
             type="text"
             className={styles.input}
