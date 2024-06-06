@@ -1,6 +1,8 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { DeleteCell, EditCell } from "./components";
+import { DeleteCell } from "@/components/shared-components";
+import { deleteCategory } from "@/actions/categories-actions";
+import { EditCell } from "./components";
 import { ICategory } from "@/types";
 
 export function Row({ category }: { category: ICategory }) {
@@ -17,7 +19,7 @@ export function Row({ category }: { category: ICategory }) {
         />
       </TableCell>
       <TableCell>{category.name}</TableCell>
-      <DeleteCell categoryId={category.id} />
+      <DeleteCell id={category.id} action={deleteCategory} />
       <EditCell category={category} />
     </TableRow>
   );

@@ -1,6 +1,8 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { DeleteCell, EditCell } from "./components";
+import { DeleteCell } from "@/components/shared-components";
+import { deleteProduct } from "@/actions/products-actions";
+import { EditCell } from "./components";
 import { IProduct } from "@/types";
 
 export function Row({ product }: { product: IProduct }) {
@@ -22,7 +24,7 @@ export function Row({ product }: { product: IProduct }) {
       <TableCell>{product.oldPrice}</TableCell>
       <TableCell>{product.isNew ? "Yes" : "No"}</TableCell>
       <TableCell>{product.categoryId}</TableCell>
-      <DeleteCell productId={product.id} />
+      <DeleteCell id={product.id} action={deleteProduct} />
       <EditCell product={product} />
     </TableRow>
   );

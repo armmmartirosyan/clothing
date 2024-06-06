@@ -1,7 +1,9 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { DeleteCell, EditCell } from "./components";
-import { ICarousel, IProduct } from "@/types";
+import { DeleteCell } from "@/components/shared-components";
+import { deleteCarousel } from "@/actions/carousel-actions";
+import { EditCell } from "./components";
+import { ICarousel } from "@/types";
 
 export function Row({ carouselItem }: { carouselItem: ICarousel }) {
   return (
@@ -18,7 +20,7 @@ export function Row({ carouselItem }: { carouselItem: ICarousel }) {
       </TableCell>
       <TableCell>{carouselItem.title}</TableCell>
       <TableCell>{carouselItem.text}</TableCell>
-      <DeleteCell carouselItemId={carouselItem.id} />
+      <DeleteCell id={carouselItem.id} action={deleteCarousel} />
       <EditCell carouselItem={carouselItem} />
     </TableRow>
   );

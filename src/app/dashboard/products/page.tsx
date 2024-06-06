@@ -1,8 +1,8 @@
 import { Suspense, JSX } from "react";
 import { cookies } from "next/headers";
-import { ProductsTable } from "@/components/dashboard-components";
-import { AddProduct } from "@/components/dashboard-components";
+import { ProductsTable, AddProduct } from "@/components/dashboard-components";
 import { OnlyPageSearchParams } from "@/types/component-types";
+import { TableLoading } from "@/components/shared-components";
 import { getProducts } from "@/actions/products-actions";
 import { authUtils } from "@/utils/auth-utils";
 
@@ -18,7 +18,7 @@ export default async function Products({
   return (
     <main className="dashboard_main">
       <AddProduct />
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<TableLoading />}>
         <ProductsTable page={page} products={products} pageCount={pageCount} />
       </Suspense>
     </main>

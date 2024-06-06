@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ICarousel, IProduct } from "./index";
+import { GenericActionReturn } from "./action-types";
 
 export type PageSearchParams = {
   [key: string]: string;
@@ -28,4 +29,9 @@ export type ProductPageProps = {
 
 export type RelatedProductsProps = {
   categoryId: string;
+};
+
+export type DeleteCellProps = {
+  id: string;
+  action: (productId: string) => Promise<GenericActionReturn>;
 };

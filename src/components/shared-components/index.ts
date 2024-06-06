@@ -1,3 +1,5 @@
 export { Button } from "./button";
-export { Pagination } from "./pagination";
 export { CloseIcon } from "./close-icon";
+export { Pagination } from "./pagination";
+export { DeleteCell } from "./delete-cell";
+export { TableLoading } from "./table-loading";
