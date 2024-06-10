@@ -19,7 +19,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/images*": ["./public/images/*"]
+      "@/images*": ["./public/images/*"],
+      "prisma-client": ["./prisma/index"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

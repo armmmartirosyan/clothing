@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import { prisma } from "prisma-client";
 import { GetCategoriesApiReturn } from "@/types";
 
 export async function GET(): Promise<GetCategoriesApiReturn> {

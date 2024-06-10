@@ -7,7 +7,7 @@ import {
   DELETE_IMAGE_FAIL,
 } from "@/constants/messages";
 import { backendClient } from "@/lib/edgestore-server";
-import prisma from "@/lib/prisma";
+import { prisma } from "prisma-client";
 import {
   EditActionArgs,
   GenericActionReturn,
