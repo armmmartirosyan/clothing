@@ -1,5 +1,4 @@
-"use client";
-
+import { JSX } from "react";
 import TableContainer from "@mui/material/TableContainer";
 import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
@@ -7,27 +6,20 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
-import { PRODUCTS_TABLE_COLUMNS } from "@/constants/shared-constants";
-import { Pagination } from "@/components/shared-components";
-import { IProduct } from "@/types";
+import { CATEGORIES_TABLE_COLUMNS } from "@/constants/shared-constants";
+import { getCategories } from "@/actions/categories-actions";
 import { Row } from "./row";
 
-export function ProductsTable({
-  page,
-  pageCount,
-  products,
-}: {
-  page: number;
-  pageCount: number;
-  products: IProduct[];
-}) {
+export async function CategoriesList(): Promise<JSX.Element> {
+  const categories = await getCategories();
+
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer>
         <Table aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {PRODUCTS_TABLE_COLUMNS.map((column) => (
+              {CATEGORIES_TABLE_COLUMNS.map((column) => (
                 <TableCell
                   key={column.id}
                   style={{ minWidth: column.minWidth }}
@@ -38,13 +30,12 @@ export function ProductsTable({
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
-              <Row product={product} key={product.id} />
+            {categories.map((category) => (
+              <Row category={category} key={category.id} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <Pagination page={page} count={pageCount} />
     </Paper>
   );
 }

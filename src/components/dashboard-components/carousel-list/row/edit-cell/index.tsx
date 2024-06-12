@@ -1,12 +1,13 @@
 "use client";
 
+import { JSX } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import TableCell from "@mui/material/TableCell";
 import { useRef } from "react";
 import { EditModal } from "./edit-modal";
-import { ICategory } from "@/types";
+import { OnlyCarouselInProps } from "@/types/component-types";
 
-export function EditCell({ category }: { category: ICategory }) {
+export function EditCell({ carouselItem }: OnlyCarouselInProps): JSX.Element {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const hadleOpen = () => {
@@ -16,7 +17,7 @@ export function EditCell({ category }: { category: ICategory }) {
   return (
     <TableCell onClick={hadleOpen}>
       <EditIcon sx={{ cursor: "pointer" }} />
-      <EditModal dialogRef={dialogRef} category={category} />
+      <EditModal dialogRef={dialogRef} carouselItem={carouselItem} />
     </TableCell>
   );
 }

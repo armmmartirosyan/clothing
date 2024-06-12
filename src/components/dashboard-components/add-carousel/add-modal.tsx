@@ -1,17 +1,14 @@
 "use client";
 
-import { RefObject, useRef } from "react";
+import { JSX, useRef } from "react";
 import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
+import { OnlyDialogRefProps } from "@/types/component-types";
 import { CloseIcon } from "@/components/shared-components";
 import { addCarousel } from "@/actions/carousel-actions";
 import { Button } from "@/components/shared-components";
 import styles from "./index.module.css";
 
-export function AddModal({
-  dialogRef,
-}: {
-  dialogRef: RefObject<HTMLDialogElement>;
-}) {
+export function AddModal({ dialogRef }: OnlyDialogRefProps): JSX.Element {
   const formRef = useRef<HTMLFormElement>(null);
 
   const closeDialog = () => {

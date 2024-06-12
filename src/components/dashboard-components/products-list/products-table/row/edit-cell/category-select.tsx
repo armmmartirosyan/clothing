@@ -1,8 +1,14 @@
+"use client";
+
+import { JSX } from "react";
 import { useState } from "react";
+import { CategorySelectProps } from "@/types/component-types";
 import { useGetAllCategories } from "@/hooks";
 import styles from "./index.module.css";
 
-export function CategorySelect({ defaultValue }: { defaultValue: string }) {
+export function CategorySelect({
+  defaultValue,
+}: CategorySelectProps): JSX.Element {
   const [selectedCategory, setSelectedCategory] =
     useState<string>(defaultValue);
 

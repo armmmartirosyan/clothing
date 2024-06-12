@@ -1,11 +1,12 @@
 "use client";
 
+import { JSX } from "react";
 import Button from "@mui/material/Button";
 import { useRef } from "react";
 import { AddModal } from "./add-modal";
 import styles from "./index.module.css";
 
-export function AddCarousel() {
+export function AddCarousel(): JSX.Element {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const handleOpenDialog = () => {

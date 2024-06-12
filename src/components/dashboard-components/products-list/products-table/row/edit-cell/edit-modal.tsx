@@ -1,21 +1,18 @@
 "use client";
 
-import { MouseEventHandler, RefObject, useRef } from "react";
+import { MouseEventHandler, useRef, JSX } from "react";
 import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
+import { ProductEditModalProps } from "@/types/component-types";
 import { CloseIcon } from "@/components/shared-components";
 import { editProduct } from "@/actions/products-actions";
 import { Button } from "@/components/shared-components";
 import { CategorySelect } from "./category-select";
-import { IProduct } from "@/types";
 import styles from "./index.module.css";
 
 export function EditModal({
   dialogRef,
   product,
-}: {
-  dialogRef: RefObject<HTMLDialogElement>;
-  product: IProduct;
-}) {
+}: ProductEditModalProps): JSX.Element {
   const formRef = useRef<HTMLFormElement>(null);
 
   const closeDialog = () => {

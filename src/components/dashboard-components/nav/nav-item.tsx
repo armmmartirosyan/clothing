@@ -1,12 +1,13 @@
 "use client";
 
+import { JSX } from "react";
 import { usePathname } from "next/navigation";
 import Button from "@mui/material/Button";
 import { useMemo } from "react";
 import Link from "next/link";
-import { INavItem } from "@/types";
+import { NavItemProps } from "@/types/component-types";
 
-export function NavItem({ navItem }: { navItem: INavItem }) {
+export function NavItem({ navItem }: NavItemProps): JSX.Element {
   const { path, name } = navItem;
   const pathName = usePathname();
 

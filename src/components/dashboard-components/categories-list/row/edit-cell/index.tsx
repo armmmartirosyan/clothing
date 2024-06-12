@@ -1,12 +1,13 @@
 "use client";
 
+import { JSX } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import TableCell from "@mui/material/TableCell";
 import { useRef } from "react";
 import { EditModal } from "./edit-modal";
-import { IProduct } from "@/types";
+import { OnlyCategoryInProps } from "@/types/component-types";
 
-export function EditCell({ product }: { product: IProduct }) {
+export function EditCell({ category }: OnlyCategoryInProps): JSX.Element {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const hadleOpen = () => {
@@ -16,7 +17,7 @@ export function EditCell({ product }: { product: IProduct }) {
   return (
     <TableCell onClick={hadleOpen}>
       <EditIcon sx={{ cursor: "pointer" }} />
-      <EditModal dialogRef={dialogRef} product={product} />
+      <EditModal dialogRef={dialogRef} category={category} />
     </TableCell>
   );
 }

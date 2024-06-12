@@ -1,11 +1,12 @@
+import { JSX } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { DeleteCell } from "@/components/shared-components";
 import { deleteProduct } from "@/actions/products-actions";
-import { EditCell } from "./components";
-import { IProduct } from "@/types";
+import { OnlyProductInObject } from "@/types/component-types";
+import { EditCell } from "./edit-cell";
 
-export function Row({ product }: { product: IProduct }) {
+export function Row({ product }: OnlyProductInObject): JSX.Element {
   return (
     <TableRow hover tabIndex={-1} role="checkbox" key={product.id}>
       <TableCell>{product.id}</TableCell>

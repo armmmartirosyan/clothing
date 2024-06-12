@@ -1,10 +1,11 @@
 "use client";
 
-import LogoutIcon from "@mui/icons-material/Logout";
+import { JSX } from "react";
 import { useRouter } from "next/navigation";
+import LogoutIcon from "@mui/icons-material/Logout";
 import styles from "./index.module.css";
 
-export function SignOutIcon() {
+export function SignOutIcon(): JSX.Element {
   const router = useRouter();
 
   const handleSignOut = async () => {

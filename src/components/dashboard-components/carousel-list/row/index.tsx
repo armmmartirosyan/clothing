@@ -1,11 +1,12 @@
+import { JSX } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { OnlyCarouselInProps } from "@/types/component-types";
 import { DeleteCell } from "@/components/shared-components";
 import { deleteCarousel } from "@/actions/carousel-actions";
-import { EditCell } from "./components";
-import { ICarousel } from "@/types";
+import { EditCell } from "./edit-cell";
 
-export function Row({ carouselItem }: { carouselItem: ICarousel }) {
+export function Row({ carouselItem }: OnlyCarouselInProps): JSX.Element {
   return (
     <TableRow hover tabIndex={-1} role="checkbox">
       <TableCell>{carouselItem.id}</TableCell>

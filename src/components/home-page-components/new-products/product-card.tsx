@@ -1,8 +1,8 @@
 import { JSX } from "react";
-import { ProductCardProps } from "@/types/component-types";
+import { OnlyProductInObject } from "@/types/component-types";
 import styles from "./index.module.css";
 
-export function ProductCard({ product }: ProductCardProps): JSX.Element {
+export function ProductCard({ product }: OnlyProductInObject): JSX.Element {
   return (
     <div className={` ${styles.item}`}>
       <div className={`product-item ${styles.product_card}`}>

@@ -1,5 +1,4 @@
-"use client";
-
+import { JSX } from "react";
 import TableContainer from "@mui/material/TableContainer";
 import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
@@ -7,11 +6,13 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
-import { CAROUSEL_TABLE_COLUMNS } from "@/constants/shared-constants";
-import { ICarousel } from "@/types";
 import { Row } from "./row";
+import { getCarousel } from "@/actions/carousel-actions";
+import { CAROUSEL_TABLE_COLUMNS } from "@/constants/shared-constants";
 
-export function CarouselTable({ carousel }: { carousel: ICarousel[] }) {
+export async function CarouselList(): Promise<JSX.Element> {
+  const carousel = await getCarousel();
+
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer>

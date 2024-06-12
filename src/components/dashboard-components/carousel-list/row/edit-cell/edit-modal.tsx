@@ -1,20 +1,18 @@
 "use client";
 
+import { JSX } from "react";
 import { MouseEventHandler, RefObject, useRef } from "react";
 import { ACCEPTED_IMAGE_TYPES_STRING } from "@/constants/shared-constants";
+import { CarouselEditModalProps } from "@/types/component-types";
 import { CloseIcon } from "@/components/shared-components";
 import { editCarousel } from "@/actions/carousel-actions";
 import { Button } from "@/components/shared-components";
-import { ICarousel } from "@/types";
 import styles from "./index.module.css";
 
 export function EditModal({
   dialogRef,
   carouselItem,
-}: {
-  dialogRef: RefObject<HTMLDialogElement>;
-  carouselItem: ICarousel;
-}) {
+}: CarouselEditModalProps): JSX.Element {
   const formRef = useRef<HTMLFormElement>(null);
 
   const closeDialog = () => {

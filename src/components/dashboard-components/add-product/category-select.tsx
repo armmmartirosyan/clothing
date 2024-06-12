@@ -1,7 +1,10 @@
+"use client";
+
+import { JSX } from "react";
 import { useGetAllCategories } from "@/hooks";
 import styles from "./index.module.css";
 
-export function CategorySelect() {
+export function CategorySelect(): JSX.Element {
   const categories = useGetAllCategories();
 
   return (
