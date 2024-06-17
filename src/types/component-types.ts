@@ -2,8 +2,6 @@ import { ReactNode, RefObject } from "react";
 import { ICarousel, ICategory, INavItem, IProduct } from "./index";
 import { GenericActionReturn } from "./action-types";
 
-export type ProductsListInObject = { products: IProduct[] };
-
 export type OnlyCategoryInProps = { category: ICategory };
 
 export type OnlyProductInObject = { product: IProduct };
@@ -15,6 +13,16 @@ export type CategorySelectProps = { defaultValue: string };
 export type NavItemProps = { navItem: INavItem };
 
 export type BannerCarouselProps = { carousel: ICarousel[] };
+
+export type ProductsListInObject = { products: IProduct[] };
+
+export type CategoriesListInObject = {
+  categories: ICategory[];
+};
+
+export type CarouselListInObject = {
+  carousel: ICarousel[];
+};
 
 export type PageSearchParams = {
   [key: string]: string;
