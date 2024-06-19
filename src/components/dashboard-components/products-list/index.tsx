@@ -1,5 +1,4 @@
 import { JSX } from "react";
-import Paper from "@mui/material/Paper";
 import { Pagination } from "@/components/shared-components";
 import { ProductsListProps } from "@/types/component-types";
 import { getProducts } from "@/actions/products-actions";
@@ -11,9 +10,9 @@ export async function ProductsList({
   const { products, pageCount } = await getProducts(page);
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <div style={{ width: "100%", overflow: "hidden" }}>
       <ProductsTable products={products} />
       <Pagination page={page} count={pageCount} />
-    </Paper>
+    </div>
   );
 }
